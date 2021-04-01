@@ -1,0 +1,261 @@
+@use '../../partials/mixins.scss' as *;
+
+.info{
+// border: 1px solid pink;
+padding:2.7rem 3.3rem 4.7rem;
+    @include desktop{
+        display: flex;
+    }
+}
+
+.info__box-mobile{
+    @include desktop{
+        // border: 1px solid pink;
+        flex-basis: 50%;
+        padding:2.4rem;
+    }
+    
+}
+
+.info__box-desktop{
+    @include desktop{
+        // border: 1px solid pink;
+        flex-basis: 50%;
+    }
+    
+}
+
+.info__desktop-img{
+    @include desktop{
+        width: 100%;
+        height:100vh;
+        object-fit: cover;
+        // border:1px solid purple;
+    }
+    
+}
+
+.info__start{
+
+}
+
+.info__heading{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    color: #154681;
+    @include desktop{
+        font-size: 3.4rem;
+        line-height:2.4rem;
+    }
+    
+}
+
+.info__para{
+    font-family: Merriweather Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #6B7177;
+    margin-top:1.4rem;
+    margin-bottom:3rem;
+    @include desktop{
+        font-size: 20px;
+        line-height: 24px;
+        margin-top:2.5rem;
+        margin-bottom:6rem;
+
+    }
+    
+}
+
+.form{
+
+}
+
+.form__div{
+ display: flex;
+//  border:1px solid pink;
+ flex-direction: column;
+}
+
+.form__box1{
+
+}
+
+.form__box2{
+
+}
+
+.form__box3{
+
+}
+
+.form__box4{
+    flex-direction: row;
+    margin-bottom:0.8rem;
+    @include desktop{
+        margin-bottom:6rem;
+    }
+}
+
+.form__box5{
+    @include desktop{
+        width:60%;
+        // margin: auto;
+        
+    }
+
+
+}
+
+.form__label{
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: #92929C;
+    @include desktop{
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+
+    }
+}
+
+.form__input{
+    font-family: 'Merriweather Sans';
+    font-size: 13px;
+    line-height: 18px;
+    color: #4B4B59;
+    margin-top:1.5rem;
+    margin-bottom:2.8rem;
+    padding:1rem 1rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(228, 228, 228, 0.6);
+    box-sizing: border-box;
+    border-radius: 5px;
+    @include desktop {
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+        margin-bottom:4rem;
+        width:80%;
+    }
+    &::placeholder{
+        font-family: 'Merriweather Sans';
+        font-size: 14px;
+        line-height: 18px;
+        color:#4B4B59;
+        @include desktop{
+            font-size: 1.4rem;
+            line-height: 2.2rem;
+        }
+    }
+
+}
+
+.form__check{
+  margin-right:1rem;
+}
+
+.form__terms{
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    color: #999999;
+    @include desktop{
+        font-size:1.3rem;
+        font-weight:2.0rem;
+    }
+}
+
+.form__btn{
+    background: #154681;
+    border-radius: 4.3rem;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    color: #FFFFFF;
+    padding:0.9rem 2rem;
+    margin:1.5rem 0;
+    @include desktop{
+        font-size: 1.6rem;
+       line-height: 2.2rem;
+       font-weight: normal;
+       padding:0.7rem;
+   
+    }
+}
+
+.form__or{
+    font-size: 15px;
+    line-height: 20px;
+    color: #999999;
+    text-align: center;
+    @include desktop{
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        // border:1px solid pink;
+        width:60%;
+    }
+}
+
+
+.google__box{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2.27778px rgba(0, 0, 0, 0.084), 0px 1.51852px 2.27778px rgba(0, 0, 0, 0.168);
+    border-radius: 31.39px;
+    padding:0.8rem 0;
+    margin:1.6rem 0;
+    @include desktop{
+        width:60%;
+        margin:1.6rem 0;
+    }
+}
+
+.google__link{
+    display: flex;
+    // border: 1px solid green;
+    justify-content: center;
+    text-align: center;
+    @include desktop{
+        font-size: 1.8rem;
+        line-height: 2.6rem;
+        // font-weight: normal;
+        // padding:1rem;
+        // width:80%;
+    }
+}
+.google__img{
+margin-right:1rem;
+}
+
+.google__para{
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.common{
+    display: flex;
+}
+
+.common__para{
+    font-size: 14px;
+    line-height: 18px;
+    color: #8C9094;
+    margin-right:1rem;
+}
+
+.common__link{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 21px;
+    text-decoration-line: underline;  
+    color: #145C9E;
+}
+

@@ -1,0 +1,64 @@
+
+// $tablet-breakpoint: 768px;
+$desktop-breakpoint : 1280px;
+
+// $min-breakpoint:550px;
+// $max-breakpoint:767px;
+
+// $min-break:1050px;
+// $max-break:1279px;
+
+// $beyond-desktop:1450px;
+
+
+// @mixin tablet {
+//     @media screen and (min-width: $tablet-breakpoint) {
+//       @content;
+//     }
+//   }
+  
+  @mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint) {
+      @content;
+    }
+  }
+
+
+
+  
+
+@mixin font-line-weight($fontsize, $line, $weight) {
+  font-size: $fontsize;
+  line-height: $line;
+  font-weight:$weight;
+}
+
+@mixin flex-wrap-margin{
+    display: flex;
+    flex-wrap: wrap;
+    margin:auto
+}
+
+
+@mixin flex-align-justify( $align ,$justify) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+
+@mixin width-height-objectfit($width, $height){
+  width:$width; 
+  height:$height;
+  object-fit: cover;
+}
+
+
+
+@mixin display-width-height-margin($display,$width,$height,$margin){
+  display:$display;
+  width:$width;
+  height: $height;
+  margin:$margin;
+}
+

@@ -1,0 +1,168 @@
+@use '../../partials/mixins.scss' as *;
+
+.home{
+
+  
+}
+
+
+.home__section{
+
+    position: relative;
+    @include desktop{
+        display: flex;
+    }
+
+}
+
+.home__image-box{
+    width:100%;
+    height:66vw;
+//  border:1px solid pink;
+ @include desktop{
+    width:49%;
+    height:38vw;
+}
+}
+
+.home__image{
+    width: 100%;
+    height:100%;
+    // height: 48rem;
+    object-fit: cover;
+    object-position: 50% 0%;
+    // width: 100vw;
+    // height: 53rem;
+    // object-fit: cover;
+
+    // @include desktop{
+    //     width:100vw;
+    //     height:55rem;
+    //     object-fit: cover;
+    //     // max-width:74.2rem;
+    // }
+    @include desktop{
+        height:50rem;
+        object-fit:cover;
+        object-position: 50% 0%;
+    }
+}
+   
+
+.home__text-box{
+//   position: absolute;
+//   bottom: 2rem;
+  padding:0 4rem;
+ 
+  @include desktop{
+      width:49%;
+      position: static;
+  }
+}
+
+.home__heading{  
+    font-family: Poppins;
+    font-style: Bold;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    width:90%;
+    // width:60%;
+}
+
+.home__para{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: Light;
+    font-size: 14px;
+    line-height: 19px
+}
+
+.home__create{
+    background: #154681;
+    border-radius: 4.3rem;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    color: #FFFFFF;
+    padding: 0.9rem 2rem;
+    margin: 1.5rem 0;
+    display: block;
+    text-align: center;
+}
+
+.home__existing{
+display: flex;
+align-items: center;
+}
+
+.home__existing-para{
+    font-size: 12px;
+    line-height: 1.8rem;
+    color: #8C9094;
+   
+}
+
+.home__existing-link{
+    font-size: 12px;
+    line-height: 1.8rem;
+    color: #145C9E;
+    margin-left:1rem;
+}
+
+.home__route-link{
+    font-size: 12px;
+    line-height: 1.8rem;
+    color: #145C9E;
+    margin-top:1rem;
+    display: block;
+}
+
+.home__four{
+    display: none;
+    @include desktop{
+        display: flex;
+    }
+}
+
+.home__text-box--one{
+    @include desktop{
+        background-color: #FFF9F3;
+    }
+}
+.home__text-box--two{
+
+}
+
+.home__text-box--three{
+    @include desktop{
+        background-color: #FFF9F3;
+    }
+}
+
+.home__text-box--four{
+    @include desktop{
+        background-color:#F5F9FF;
+    }
+}
+
+
+
+.home__image-one{
+
+}
+
+.home__image-two{
+    
+}
+
+.home__image-three{
+    
+}
+
+.home__image-four{
+    @include desktop{
+        object-position: 0% 91%;
+}
+    
+}

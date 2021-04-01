@@ -1,0 +1,137 @@
+  @use '../../partials/font-faces.scss' as *;
+  @use '../../partials/mixins.scss' as *;
+//   @mixin desktop {
+//     @media screen and (min-width: $desktop-breakpoint) {
+//       @content;
+//     }
+//   }
+
+
+.header{
+    display: flex;
+    padding:3rem 1.6rem;
+    justify-content: space-between;
+    @include desktop{
+
+    }
+}
+
+.header__logo{
+    // border:1px solid pink;
+ 
+    // text-align: left;
+    // display: flex;
+}
+
+
+.header__logo-img{
+ width:131px;
+
+}
+
+.header__desktop{
+    display: none;
+    @include desktop{
+        display: block;
+        // border:1px solid pink;
+    }
+}
+
+.header__link{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: #154681;
+    @include desktop{
+        margin-left:4rem;
+        // border:1px solid pink;
+        padding:0 1rem;
+        border-radius: 2rem;
+        &:hover{
+            background-color:cornsilk;
+         color:deepskyblue;
+            // color:rgb(64, 145, 148);
+        }
+    }
+    
+}
+
+.header__books{
+
+}
+.header__recipes{
+
+}
+.header__login{
+
+}
+.header__create{
+@include desktop{
+    font-family: Poppins;
+    font-style: normal;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    color: #FFFFFF;
+    background: #154681;
+    border-radius: 43px;
+    padding: 0.3rem 0.8rem;
+}
+}
+
+.header__mobile{
+    display:block;
+    // border:1px solid green;
+
+
+    margin-right:2rem;
+    @include desktop{
+        display:none;
+    }
+}
+
+.header__mobile-ham-box{
+
+}
+
+
+.header__mobile-ul{
+    display: block;
+    // check this
+    position: fixed;
+    // border: 1px solid green;
+    height: 100vh;
+    width: 100%;
+    top: 87px;
+    left: 0;
+    background: white;
+    text-align: center;
+    z-index:999;
+    
+}
+
+.header__mobile-ul--noshow{
+    display: none;
+}
+
+.header__mobile-li{
+    display: block;
+    padding:2.5rem 0;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;  
+    color: #154681;
+    border-bottom:1px solid #EFEFEF;
+    // border:1px solid blue;
+    &:hover{
+        background-color: floralwhite;
+        font-weight: 800;
+    }
+}
+
+.header__mobile-only{
+
+}
