@@ -31,7 +31,7 @@ class Header extends Component {
                 <div className = 'header__desktop'>
                     <NavLink className = 'header__books header__link' exact to = '/books'>Books</NavLink>
                     <NavLink className = 'header__recipes header__link' exact to = '/recipes'>Recipes</NavLink>
-                    <NavLink className = 'header__login header__link'exact to = '/login'>Login</NavLink>
+                    <NavLink className = 'header__login header__link' exact to = '/login'>Login</NavLink>
                     <NavLink className = 'header__create header__link' exact to = '/create-acct'> Create Account</NavLink>     
                 </div>
                 <div className = 'header__mobile'>
@@ -42,7 +42,7 @@ class Header extends Component {
                         <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/books' ><li>Books</li></NavLink>
                         <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/recipes'><li>Recipes</li></NavLink>
                         <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/login'><li>Login</li></NavLink>
-                        <NavLink onClick = {this.handleToggle} className = 'header__mobile-li'exact to = '/create-acct'><li>Create Account</li></NavLink>
+                        <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/create-acct'><li>Create Account</li></NavLink>
                     </ul>
                 </div>
             </header>

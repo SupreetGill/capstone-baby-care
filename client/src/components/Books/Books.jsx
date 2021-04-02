@@ -5,44 +5,72 @@ import {Link,Route} from 'react-router-dom';
 import happy from '../../assets/images/happy.png';
 import './Books.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import axios from 'axios';
 
 class Books extends Component {
+
+    state =  {
+        booksArr:null
+    }
+
+   componentDidMount(){
+        axios.get('http://localhost:5000/books')
+        .then((res)=>{
+           const books = res.data.data;
+           this.setState({
+               booksArr:books
+           }) 
+        });
+   }
+
     render() {
+      const {booksArr} = this.state;
+      if(!booksArr){
+          return <p>Loading</p>
+      }
         return (
-            <>
+        
             <section className = "book">
                 <div className = "book__main-top">
                     <img className = "book__main-img" src= {happy} alt=""/>
-                </div>
-                
-                <div className = "book__section">  
-                
-                    <div className = "book__box">
-                        <div className = "book__img-box">
-                            <img className="book__img" src={baby} alt=""/>
-                        </div>
-                        <div className="book__details-box" >
-                            <p className = "book__title" >Baby Care Basics</p>
-                            <p className = "book__author" >by Drs. Jeremy Friedman</p>
-                            <p className = "book__hard" >Hardcover <img src="" alt=""/> Shipped Worldwide</p>
-                            <Link className = "book__buy"  path to = '/'>Buy here</Link>
-                            <Link className = "book__complete" exact to = '/books/id'>More Details</Link>
-                            <div className = "book__fav-box">
-                                <FavoriteBorderIcon className= "book__heart" />
-                                <p classname = "book__fav" >Add to favourites</p>
+                </div>  
+                <div className = "book__section">   
+              {/*Through map  */}
+              {booksArr.map(book=>{
+                return  <div className = "book__box">
+                            <div className = "book__img-box">
+                                <img className="book__img" src={book.image} alt=""/>
                             </div>
-                            
-                        </div>
-                    </div>
-                    {/*  */}
-                    <div className = "book__box">
+                            <div className="book__details-box" >
+                                <p className = "book__title" >{book.title}</p>
+                                <p className = "book__author" >{book.author}</p>
+                                <p className = "book__hard" >Hardcover Shipped Worldwide</p>
+                                <Link className = "book__buy"  exact to = '/'>Buy here</Link>
+                                <Link className = "book__complete" exact to = {`/books/${book.book_id}`}>More Details</Link>
+                                <div className = "book__fav-box">
+                                    <FavoriteBorderIcon className= "book__heart" />
+                                    <p className = "book__fav" >Add to favourites</p>
+                                </div>
+                            </div>
+                        </div>                       
+              })}
+              </div>
+           </section>
+           
+        );    
+    }
+}
+
+export default Books;
+
+
+                    {/* <div className = "book__box">
                         <div className = "book__img-box">
                             <img className="book__img" src={baby} alt=""/>
                         </div>
                         <div className="book__details-box" >
                             <p className = "book__title" >Baby Care Basics</p>
                             <p className = "book__author" >by Drs. Jeremy Friedman</p>
-                            {/* <p className = "book__price" >$15.35</p> */}
                             <p className = "book__hard" >Hardcover <img src="" alt=""/> Shipped Worldwide</p>
                             <Link className = "book__buy"  path to = '/'>Buy here</Link>
                             <Link className = "book__complete" exact to = '/books/id'>More Details</Link>
@@ -60,7 +88,6 @@ class Books extends Component {
                         <div className="book__details-box" >
                             <p className = "book__title" >Baby Care Basics</p>
                             <p className = "book__author" >by Drs. Jeremy Friedman</p>
-                            {/* <p className = "book__price" >$15.35</p> */}
                             <p className = "book__hard" >Hardcover <img src="" alt=""/> Shipped Worldwide</p>
                             <Link className = "book__buy"  path to = '/'>Buy here</Link>
                             <Link className = "book__complete" exact to = '/books/id'>More Details</Link>
@@ -77,7 +104,6 @@ class Books extends Component {
                         <div className="book__details-box" >
                             <p className = "book__title" >Baby Care Basics</p>
                             <p className = "book__author" >by Drs. Jeremy Friedman</p>
-                            {/* <p className = "book__price" >$15.35</p> */}
                             <p className = "book__hard" >Hardcover <img src="" alt=""/> Shipped Worldwide</p>
                             <Link className = "book__buy"  path to = '/'>Buy here</Link>
                             <Link className = "book__complete" exact to = '/books/id'>More Details</Link>
@@ -86,12 +112,4 @@ class Books extends Component {
                                 <p classname = "book__fav" >Add to favourites</p>
                             </div>
                         </div>
-                    </div>        
-                </div>
-           </section>
-           </>
-        );    
-    }
-}
-
-export default Books;
+                    </div>         */}

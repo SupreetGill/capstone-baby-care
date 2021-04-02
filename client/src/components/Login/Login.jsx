@@ -2,14 +2,41 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import place from '../../assets/images/cycle.png';
 import './Login.scss';
+import axios from 'axios';
 
 class Login extends Component {
 
     state = {
-        name : '',
+  
         email : '',
         password : ''    
    }
+
+
+handleSubmit = (e)=>{
+    e.preventDefault();
+    // console.log(this.state.email)
+    const body = {
+        email :this.state.email,
+        password: this.state.password
+    }
+
+
+    axios.post('http://localhost:5000/users/login',body)
+    .then(res=>{
+        // console.log(res)
+        // const jwt = 'Bearer '+res.data.jwtToken;
+        const jwt = res.data.jwtToken;
+        // console.log(jwt)
+        sessionStorage.setItem('jwt',jwt);
+    
+    })
+    .catch(err => {
+        // console.log(err.response);
+        // alert(err?.response?.data?.message);
+        alert(err.response.data.message);
+    })
+}
 
    handleChange = (e)=>{
        e.preventDefault();                           
@@ -19,7 +46,7 @@ class Login extends Component {
    }
 
     render() {
-        const {name, email, password} = this.state;
+        const { email, password} = this.state;
         return (
             <section className = 'info' >
             <div className = 'info__box-mobile'>
@@ -28,7 +55,7 @@ class Login extends Component {
                     <p className = 'info__para' >let's get you started with care</p>
                 </div>
                 {/* 7 items in form */}
-                <form className = 'form' action="">
+                <form  onSubmit = {this.handleSubmit}className = 'form' action="">
                     {/* <div className = 'form__div1  form__div' >
                         <label className = 'form__label' htmlFor="name">Full Name</label>
                         <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = 'venus Angios' name = 'name' value = {name} id ='name' />

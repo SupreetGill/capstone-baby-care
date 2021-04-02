@@ -5,6 +5,38 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import './BookDetails.scss';
 
 class BookDetails extends Component {
+
+     state = {
+         BookDetails : null
+     }
+
+     componentDidMount(){
+         //const id = this.props.;
+         console.log("PROSPO", this.props.match.params)
+        // axios.get('http://localhost:5000/books/').then((data)=>{
+        //     console.log("----", data); 
+        // });
+   }
+
+ 
+  /*
+    getSnapShotBeforeUpdate(){
+
+    }
+    componentDidUpdate(){
+
+    }
+
+    -----------
+
+    constructor
+    render
+    componentDidUpdate
+    getSnapShotBeforeUpdate
+    componentDidUpdate
+    componentDidUnmount
+  */
+
     render() {
         return (
             <section className = "detail">

@@ -22,6 +22,7 @@
  @include desktop{
     width:49%;
     height:38vw;
+    max-height:48rem;
 }
 }
 
@@ -57,6 +58,8 @@
   @include desktop{
       width:49%;
       position: static;
+    //   border: 1px solid pink;
+      padding:8rem 6rem 0 6rem;
   }
 }
 
@@ -66,6 +69,15 @@
     font-size: 2.2rem;
     line-height: 2.4rem;
     width:90%;
+    text-align: center;
+    padding:0.5rem 0;
+    margin:auto;
+    @include desktop{
+    // border: 1px solid green;
+    width: 72%;
+    margin:auto;
+    text-align: center;
+    }
     // width:60%;
 }
 
@@ -73,7 +85,17 @@
     font-family: Arial, Helvetica, sans-serif;
     font-style: Light;
     font-size: 14px;
-    line-height: 19px
+    line-height: 19px;
+    text-align: center;
+    @include desktop{
+        text-align: center;
+        margin:1rem auto ;
+        // border: 1px solid green;
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+        width:72% ;
+       
+    }
 }
 
 .home__create{
@@ -89,17 +111,39 @@
     margin: 1.5rem 0;
     display: block;
     text-align: center;
+    @include desktop{
+        // border: 1px solid green;
+        width: 40%;
+        margin: auto;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+    }
+    
 }
 
 .home__existing{
 display: flex;
 align-items: center;
+// border:1px solid green;
+width:80%;
+margin:auto;
+// text-align: center;
+    @include desktop{
+        // border: 1px solid green;
+       margin:2rem auto;
+       width:50%;
+
+    }
 }
 
 .home__existing-para{
     font-size: 12px;
     line-height: 1.8rem;
     color: #8C9094;
+    @include desktop{
+        font-size:1.4rem;
+        line-height: 1.8rem;;
+    }
    
 }
 
@@ -108,6 +152,10 @@ align-items: center;
     line-height: 1.8rem;
     color: #145C9E;
     margin-left:1rem;
+    @include desktop{
+        font-size:1.4rem;
+        line-height: 1.8rem;;
+    }
 }
 
 .home__route-link{
@@ -116,34 +164,69 @@ align-items: center;
     color: #145C9E;
     margin-top:1rem;
     display: block;
+    // border:1px solid pink;
+    width:40%;
+    margin:auto;
+    padding-top:0.5rem;
+
+    @include desktop{
+        // border:1px solid pink;
+        width:40%;
+        margin:auto;
+        text-align: center;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+    //   
+    }
 }
 
-.home__four{
-    display: none;
+
+.home__one{
     @include desktop{
-        display: flex;
+        flex-direction: row-reverse;
     }
+}
+
+
+.home__three{
+    @include desktop{
+        flex-direction: row-reverse;
+    }
+}
+
+
+.home__four{
+    // display: none;
+    // @include desktop{
+    //     display: flex;
+    // }
 }
 
 .home__text-box--one{
-    @include desktop{
-        background-color: #FFF9F3;
-    }
+    background-color:#FFF9F3;;
+    // @include desktop{
+    //     background-color: #FFF9F3;
+    // }
 }
 .home__text-box--two{
-
+    background-color:#F5F9FF ;
+    @include desktop{
+        background-color:white;
+    }
 }
 
 .home__text-box--three{
-    @include desktop{
-        background-color: #FFF9F3;
-    }
+    background-color: #FFF9F3;
+    // @include desktop{
+    //     background-color: #FFF9F3;
+    // }
 }
 
 .home__text-box--four{
-    @include desktop{
-        background-color:#F5F9FF;
-    }
+    background-color:#F5F9FF;
+    // @include desktop{
+    //     background-color:#F5F9FF;
+    // }
 }
 
 
@@ -161,8 +244,22 @@ align-items: center;
 }
 
 .home__image-four{
+    object-position: 0% 91%;
     @include desktop{
         object-position: 0% 91%;
 }
     
+}
+
+.home__para-absolute{
+    position: absolute;
+    text-align: center;
+    width:30%;
+    bottom:2rem;
+    @include desktop{
+       
+       width:15%;
+       bottom:5rem;
+        
+    }
 }

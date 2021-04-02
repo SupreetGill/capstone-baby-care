@@ -64,7 +64,7 @@ class Home extends Component {
                         <img className = "home__image home__image-four " src= {img3} alt="home__image"/>
                     </div>
                     <div className = "home__text-box home__text-box--four ">       
-                        <p className = "home__para" >Ten little fingers, ten perfect toes, fill our hearts with love that overflows.</p>  
+                        <p className = "home__para home__para-absolute" >Ten little fingers, ten perfect toes, fill our hearts with love that overflows.</p>  
                     </div>
                 </section>
 
