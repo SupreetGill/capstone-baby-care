@@ -8,7 +8,7 @@ const recipeRouters = require('./routes/recipes/recipe_routes');
 const bookRouters = require('./routes/books/books_route');
 const usersRouters = require('./routes/users/users_routes');
 
-
+app.use("/images", express.static("images"));
 app.use(express.json());
 app.use(cors());
 

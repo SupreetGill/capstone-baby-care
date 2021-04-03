@@ -6,6 +6,7 @@ import happy from '../../assets/images/happy.png';
 import './Books.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 class Books extends Component {
 
@@ -23,6 +24,8 @@ class Books extends Component {
         });
    }
 
+
+
     render() {
       const {booksArr} = this.state;
       if(!booksArr){
@@ -37,7 +40,8 @@ class Books extends Component {
                 <div className = "book__section">   
               {/*Through map  */}
               {booksArr.map(book=>{
-                return  <div className = "book__box">
+                  console.log(book.book_id)
+                return  <div key = {uuidv4()} className = "book__box">
                             <div className = "book__img-box">
                                 <img className="book__img" src={book.image} alt=""/>
                             </div>

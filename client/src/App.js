@@ -9,6 +9,7 @@ import './App.scss';
 import CreateAccount from './components/CreateAccount/CreateAccount';
 import BookDetails from './components/BookDetails/BookDetails';
 import Profile from './components/Profile/Profile';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 
 class App extends Component {
   render() {
@@ -24,7 +25,7 @@ class App extends Component {
             <Route exact path = '/books' render = {(props)=> <Books {...props} />} />
             <Route exact path = '/books/:id' render = {(props)=> < BookDetails {...props} />} />
             <Route exact path = '/recipes' render = {(props)=> <Recipes {...props} />} />
-            {/* <Route exact path = '/recipe:id' render = {(props)=> <Login {...props} />} /> */}
+            <Route exact path = '/recipe:id' render = {(props)=> <RecipeDetails {...props} />} />
           </Switch>
         </BrowserRouter>
       </div>

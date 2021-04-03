@@ -14,6 +14,12 @@ router.get('/', (req, res)=>{
                        error:error
                    })
                }
+               result.map(book=>{
+                 const imagePath = `http://localhost:5000/images/bookImages/${book.image}` 
+                 book.image = imagePath
+                 return book;
+               })
+
                return res.status(200).json({
                    data:result
                })
@@ -32,6 +38,7 @@ router.get('/:id', (req, res)=>{
                     error: error
                 })
             }
+            result[0].image = `http://localhost:5000/images/bookImages/${result[0].image}`;
             return res.status(200).json({
                 data:result[0]
             })

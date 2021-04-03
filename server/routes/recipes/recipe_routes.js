@@ -32,6 +32,11 @@ router.get('/',(req,res)=>{
                     error:error
                 })
             }
+            result.map(recipe=>{
+                const imagePath = `http://localhost:5000/images/recipeImages/${recipe.image}` 
+                recipe.image = imagePath
+                return recipe;
+              })
             return res.status(200).json({
                 data:result
             })
@@ -40,7 +45,7 @@ router.get('/',(req,res)=>{
     )
 })
 
-router.get('/recipeCategory/:categoryid', (req,res)=>{
+router.get('/recipeByCategory/:categoryid', (req,res)=>{
     const categoryId = req.params.categoryid;
 
     db.query(
@@ -73,8 +78,9 @@ router.get('/recipeDetails/:recipeid', (req,res)=>{
                 error:error
             })
         }
+        result[0].image = `http://localhost:5000/images/recipeImages/${result[0].image}`;
         return res.status(200).json({
-            data:result
+            data:result[0]
         })
 
     }
