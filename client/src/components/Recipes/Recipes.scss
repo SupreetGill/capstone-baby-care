@@ -1,4 +1,4 @@
-@use '../../partials/mixins.scss' as *;
+  @use '../../partials/mixins.scss' as *;
 
 .recipes{
     @include desktop{
@@ -12,10 +12,12 @@
 }
 
 .recipes__nav-ul{
+    display: none;
     @include desktop{
         display: flex;
         // border:1px solid pink;
         justify-content: space-between;
+
     
     }
    
@@ -40,7 +42,7 @@
 }
 
 .recipes__li{
-
+font-size: 1.6rem;
 }
 
 
@@ -58,54 +60,58 @@
 
 
 .recipes__section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin:5rem 0;
     @include desktop{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        margin:5rem 0;
+        
     }
 }
 
 .recipes__single-box{
+    flex-basis:90%;
+    margin: auto;
+    margin-bottom:6rem;
+
     @include desktop{
-        // flex-basis:30%;
-        // height:35vw;
-        flex-basis:27%;
-        height:30vw;
-        // border:1px solid blue;
-        margin-bottom:6rem;
+    flex-basis: 23%;
+    height:30vw;
+       
     }
 
 }
 .recipes__img{
+    width: 100%;
+    object-fit: cover;
+    object-position: 0% 92%;
+    border-radius: 2rem;
+    height: 250px;
     @include desktop{
-        width: 100%;
-        height: 79%;
-        object-fit: cover;
-        object-position: 0% 92%;
-        border-radius: 2rem;
+    height: 79%;
+ 
        
     }
 }
 
 .recipes__title{
-    @include desktop{
-        font-style: Regular;
+    font-style: Regular;
         font-size: 16px;
         line-height: 18px;
         color:#4B4B59;
         text-align: center;
         margin:1rem 0;
-    }   
+   
 }
 
 .recipes__likes-box{
-    @include desktop{
-     display: flex;
+    display: flex;
      font-weight:600;
      font-size:1.3rem;
      line-height: 1.8rem;
      color:#262626;
+    @include desktop{
+     
     }
 }
 
@@ -118,12 +124,13 @@
 }
 
 .recipes__comment-box{
-    @include desktop{
-        display: flex;
+    display: flex;
         font-weight:600;
         font-size:1.3rem;
         line-height: 1.8rem;
         color:#262626;
+    @include desktop{
+        
       
     }
 }
@@ -137,11 +144,12 @@
 }
 
 .recipes__popularity-box{
+    display: flex;
+    // border:1px solid pink;
+    justify-content: space-between;
+    padding:0 1.5rem;
     @include desktop{
-        display: flex;
-        // border:1px solid pink;
-        justify-content: space-between;
-        padding:0 1.5rem;
+       
     }
 }
 
@@ -150,4 +158,19 @@
         margin-right:1rem;
     }
   
+}
+
+.recipes__mobile-select{
+    display: block;
+    width:80%;
+    margin: auto;
+    height: 4rem;
+    margin-bottom:1rem;
+    @include desktop{
+        display: none;
+    }
+}
+
+.custom-select{
+    font-size: 1.6rem;
 }

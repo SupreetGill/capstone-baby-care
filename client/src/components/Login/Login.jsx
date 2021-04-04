@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import place from '../../assets/images/cycle.png';
 import './Login.scss';
 import axios from 'axios';
@@ -9,7 +9,9 @@ class Login extends Component {
     state = {
   
         email : '',
-        password : ''    
+        password : '' ,
+        isLoggedIn : false
+
    }
 
 
@@ -29,6 +31,9 @@ handleSubmit = (e)=>{
         const jwt = res.data.jwtToken;
         // console.log(jwt)
         sessionStorage.setItem('jwt',jwt);
+        this.setState({
+            isLoggedIn : true
+        })
     
     })
     .catch(err => {
@@ -46,7 +51,10 @@ handleSubmit = (e)=>{
    }
 
     render() {
-        const { email, password} = this.state;
+        const { email, password, isLoggedIn} = this.state;
+        if(isLoggedIn){
+           return <Redirect to = '/profile' />
+        }
         return (
             <section className = 'info' >
             <div className = 'info__box-mobile'>
@@ -85,10 +93,10 @@ handleSubmit = (e)=>{
             {/* for desktop */}
             <div className ='info__box-desktop' >    
                    <img className = 'info__desktop-img' src={place} alt=""/>
-                </div>
-
-
+            </div>
+           
         </section>
+    
         );
     }
 }

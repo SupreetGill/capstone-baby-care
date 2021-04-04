@@ -1,0 +1,234 @@
+@use '../../partials/mixins.scss' as*;
+
+
+.profile{
+    @include desktop{
+        padding:4rem 2.5rem;
+        // border:1px solid green;
+    }
+}
+
+.profile__intro-box{
+    @include desktop{
+        display: flex;
+        align-items: center;
+        // border:1px solid pink;
+    }
+}
+
+.profile__hand-img{
+    @include desktop{
+        width:50px;
+        height:50px;
+        margin-right:2rem;
+    }
+}
+
+.profile__top-name{
+    font-size: 2.4rem;
+    line-height: 2rem;
+    color:orange;
+    @include desktop{
+        font-size: 3.4rem;
+    line-height: 4rem;
+    }
+}
+
+.profile__user-details{
+@include desktop{
+   margin-top:6rem;
+   margin-bottom:3rem;
+}
+}
+
+.profile__attributes-box{
+@include desktop{
+    // border:1px solid pink;
+}
+}
+
+.profile__attributes-box--margin{
+    @include desktop{
+        margin-bottom: 3rem;
+    }
+ 
+}
+
+.profile__name-title{
+@include desktop{
+    font-family:poppins;
+    font-size:1.8rem;
+    line-height: 1.8rem;
+    font-weight: bold;
+    color:#154681;
+    margin-bottom:0.8rem;
+}
+}
+
+.profile__name{
+@include desktop{
+    font-family:poppins;
+    font-size:1.8rem;
+    line-height: 2.2rem;
+    font-weight: regular;
+    color:#6B7177;
+}
+}
+
+.kids{
+
+    @include desktop{
+        margin-top:8rem;
+        
+    }
+}
+
+.kids__add-box{
+@include desktop{
+    display: flex;
+    align-items: center;
+    margin-bottom:2rem;
+}
+}
+
+.kids__num{
+
+    @include desktop{
+        flex:1;
+        font-family:poppins;
+        font-weight:bold;
+        font-size:2rem;
+        line-height: 1.8rem;
+        color: #154681;
+    }
+}
+
+.kids__add-btn-box{
+@include desktop{
+    display: flex;
+    align-items: center;
+}
+}
+
+.kids__dd-btn{
+@include desktop{
+    background-color:  #154681;
+    color:white;
+    padding:0.8rem 2rem;
+    border-radius:20px;
+    font-size: 1.6rem;
+}
+}
+
+.kids__delet-icon{
+@include desktop{
+    width:25px;
+    height:25px;
+    margin-left:2rem;
+}
+}
+
+.kids__container{
+
+}
+
+.kids__single-container{
+    display: flex;
+    border:1px solid #F5F9FF;
+    border-radius:4rem;
+    // box-shadow: rgba(0, 0, 0, 0.08);
+    margin-bottom:2.5rem;
+    justify-content: space-between;
+    background-color: #F5F9FF;
+    padding:2rem;
+    flex-wrap: wrap;
+@include desktop{
+    display: flex;
+    border:1px solid #F5F9FF;
+    border-radius:4rem;
+    // box-shadow: rgba(0, 0, 0, 0.08);
+    margin-bottom:2.5rem;
+    justify-content: space-between;
+    background-color: #F5F9FF;
+    padding:2rem;
+
+}
+}
+
+.kids__inner{
+ width:100%;
+    @include desktop{
+        display: flex;
+        // border:1px solid pink;
+        align-items: center;
+    }
+}
+
+.kids__img{
+
+    @include desktop{
+        width:50px;
+        height: 50px;
+    }
+}
+
+.kid__name{
+    @include desktop{
+     font-weight:600;
+     font-size:2rem;
+     line-height: 2rem;
+     color:#6B7177
+}
+
+}
+.kids__inner-diff{
+    width:100%;
+    @include desktop{
+        display: flex;
+        flex-direction: column;
+        // border:1px solid pink;
+    }
+}
+
+.kids__feature{
+
+    @include desktop{
+    font-family: Poppins;
+    font-weight:700;
+    font-size: 1.8rem;
+    line-height:1.8rem;
+    color: #154681;
+    margin-bottom: 0.8rem;
+
+    }
+}
+
+.kids__feature-value{
+    @include desktop{
+        font-family: Poppins;
+        font-weight:400;
+        font-size: 1.6rem;
+        line-height:2.2rem;
+       color: #6B7177;
+     
+    }
+
+}
+
+.kids__edit{
+@include desktop{
+   
+        font-weight:600;
+        font-size: 1.3rem;
+        line-height:1.8rem;
+       color: #6B7177;
+}
+}
+
+.kids__edit-icon{
+    @include desktop{
+        width:35px;
+        height: 35px;
+        
+    }
+}

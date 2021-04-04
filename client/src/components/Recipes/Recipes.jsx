@@ -9,7 +9,7 @@ import './Recipes.scss';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-
+import { Form } from "react-bootstrap";
 class Recipes extends Component {
 
    state = {
@@ -38,19 +38,30 @@ class Recipes extends Component {
         });
    }
 
+   componentDidUpdate (){
+
+   }
+
 fetchId=(e)=>{
     e.preventDefault();
     
-  console.log(e.target.value)
-  console.log(e)
-  axios.get('')
+//   console.log(e.target.id)
+const selectedCat = e.target.id;
+//   console.log(e)
+  axios.get(`http://localhost:5000/recipes/recipeByCategory/${selectedCat}`)
+  .then(res=>{
+      console.log(res.data.data)
+      this.setState({
+        recipesArr: res.data.data
+      })
+  })
 }
    
 
     render() {
        
-        const {recipeCategoriesArr} = this.state;
-        if(!recipeCategoriesArr){
+        const {recipeCategoriesArr,recipesArr} = this.state;
+        if(!recipeCategoriesArr || !recipesArr) {
             return <p>Loading</p>
         }
         return (
@@ -59,19 +70,54 @@ fetchId=(e)=>{
                     <ul className = 'recipes__nav-ul'>
 
                 {recipeCategoriesArr.map(category=>{
-                  return  <>
-                               <div  key = {uuidv4()} onClick = {this.fetchId} id = {category.id} className = 'recipes__li-div'>
-                                    <li className = 'recipes__li'>{category.name}</li>
+                  return  <div className = 'recipes__li-div'>
+                                    <li onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</li>
                                 </div>    
-                    </>
-
+                    
                 })}
                            
                     </ul>
+                    <Form className= "recipes__mobile-select">
+                        <Form.Group controlId="exampleForm.SelectCustom">
+                            <Form.Control as="select" custom>
+                            {recipeCategoriesArr.map(category=>{
+                                                    
+                                                    return  <option  onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</option>
+                                                    {/* <li onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</li> */}
+                                                {/* </div>     */}
+                                    
+                                })}
+                            {/* <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option> */}
+                            </Form.Control>
+                        </Form.Group>
+                    </Form>
                 </nav>
 
                 <section className = 'recipes__section'>
-                    <div className = 'recipes__single-box' >
+                    {recipesArr.map(recipe=>{
+                     return    <div className = 'recipes__single-box' >
+                         <img className = 'recipes__img' src= {recipe.image} alt=""/>
+                         <p className = 'recipes__title' >{recipe.name}</p>
+ 
+                         <div className = 'recipes__popularity-box'>
+                             <div className = 'recipes__likes-box' >
+                                 <FavoriteIcon className = 'recipes__likes-icon' />
+                                 <p className = 'recipes__likes' >466 likes</p>
+                             </div>
+                             <div className = 'recipes__comment-box' >
+                                 <ModeCommentIcon className = 'recipes__comment-icon' />
+                                 <p className = 'recipes__comments' >22 comments</p>
+                             </div>
+                         </div>
+                         <Link className = 'recipes__link' to = {`/recipe/${recipe.recipe_id}`} >Recipe details</Link> 
+                     </div>
+ 
+                    })}
+                    {/* <div className = 'recipes__single-box' >
                         <img className = 'recipes__img' src= {carrot} alt=""/>
                         <p className = 'recipes__title' >Chocolate Chip cookies</p>
 
@@ -206,7 +252,7 @@ fetchId=(e)=>{
                         </div>
                         <Link className = 'recipes__link' to = '/recipe:id' >Recipe details</Link> 
                     </div>
-                    
+                     */}
                     
                 </section>
             </main>

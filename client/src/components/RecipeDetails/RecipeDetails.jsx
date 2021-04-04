@@ -5,6 +5,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import axios from 'axios';
 import './RecipeDetails.scss';
 
 class RecipeDetails extends Component {
@@ -12,15 +13,28 @@ class RecipeDetails extends Component {
 
    state = {
        name:'',
-       RecipeDetails: null,
+       singleRecipe: null,
        allComments:false
    }
 
+componentDidMount(){
+    const selectedRecipe =this.props.match.params.id;
+    console.log(selectedRecipe)
+    axios.get(`http://localhost:5000/recipes/recipeDetails/${selectedRecipe}`)
+    .then(res=>{
+        // console.log(res.data.data)
+        this.setState({
+            singleRecipe:res.data.data
+        })
+    })
+}
+
+
 handleChange=(e)=>{
-e.preventDefault();
-this.setState({
-    name:e.target.value
-})
+    e.preventDefault();
+    this.setState({
+        name:e.target.value
+    })
 }
 
 showComments = (e)=>{
@@ -31,22 +45,22 @@ showComments = (e)=>{
 }
 
     render() {
+        const {singleRecipe} = this.state;
+        if (!singleRecipe){
+            return <p>Loading ...</p>
+        }
         return (
             <section className = 'recipe'>
                 <div className = 'recipe__img-box' >
-                    <img className = 'recipe__img' src={carrot} alt=""/>
+                    <img className = 'recipe__img' src={singleRecipe.image} alt=""/>
                 </div>
                 <div className='recipe__basic-info' >  
-                    <h1 className = 'recipe__title' >Chocolate</h1>
+                    <h1 className = 'recipe__title' >{singleRecipe.name}</h1>
                     <p className = 'recipe__about' >About the Recipe</p>
-                    <p className = 'recipe__description' >Delicious cookies to relish in the festive season of Christmas. Bittersweet chocolate melted and mixed with ground almonds, eggs and sugar, baked to perfection! These cookies would be the perfect Christmas gift for you and your family.</p>
-                    <h2 className = 'recipe__how' >How to make Chocolate cookies</h2>
-                    <p className = 'recipe__instructions' >Refrigerate the dough for two hours.
-                    Heat the oven to 325 degrees F.
-                    Remove the dough from the refrigerator and take small pieces about the size of large olives and roll into a ball.
-                    Roll each ball first into the granulated sugar, then into the powdered sugar and place on a parchment covered baking sheet.
-                    Continue to use up all of the dough in the same manner.
-                    Bake the cookies for about 15 minutes or until they expand and begin to crack.</p>
+                    <p className = 'recipe__description' >{singleRecipe.description}</p>
+                    <h2 className = 'recipe__how' >How to make {singleRecipe.name}</h2>
+                    <p className = 'recipe__instructions' >{singleRecipe.instructions}
+               </p>
 
 {/* adding here likes an comments structure */}
 
@@ -117,11 +131,14 @@ showComments = (e)=>{
                 <div className = 'recipe__ingredients-box' >
                     <h3 className = 'recipe__ingredients' >Ingredients</h3>
                     <ul className = 'recipes__ul' >
-                        <li className = 'recipes__li' >Ingredient one</li>
-                        <li className = 'recipes__li' >Ingredient two</li>
+                        {singleRecipe.ingredients.map(i=>{
+                            return <li className = 'recipes__li' >{i}</li>
+                        })}
+                        
+                        {/* <li className = 'recipes__li' >Ingredient two</li>
                         <li className = 'recipes__li' >Ingredient three</li>
                         <li className = 'recipes__li' >Ingredient four</li>
-                        <li className = 'recipes__li' >Ingredient five</li>
+                        <li className = 'recipes__li' >Ingredient five</li> */}
                                     
                     </ul>
                 </div>

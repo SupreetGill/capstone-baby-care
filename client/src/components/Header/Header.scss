@@ -23,7 +23,12 @@
     // display: flex;
 }
 
+.header__dropdown-item{
+    font-size: 2rem;
+    color: #154681;
+    padding: 1rem 2rem;
 
+}
 .header__logo-img{
  width:131px;
 
@@ -37,6 +42,36 @@
     }
 }
 
+
+//dropdown
+.header__dropdown{
+    @include desktop{
+        display: flex;
+    }
+    
+}
+
+.header__dropdown-color{
+    @include desktop{
+        background-color: transparent ;
+        color: #154681;
+        border: none;
+        font-size: 2rem;
+        padding: 0 1rem;
+        margin-left: 1rem;
+        &:focus{
+            outline: none;
+box-shadow: none;
+        }
+    }
+    
+}
+.show {
+    #dropdown-basic{
+        background-color: transparent ;
+        color: #154681;
+    }
+}
 .header__link{
     font-family: Poppins;
     font-style: normal;

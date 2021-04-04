@@ -23,13 +23,14 @@ width:100%;
 }
 
 .book__img{
-//   border:1px solid pink;
+
   width:100%;
-//   width:10.5rem;
-//   height:10.5rem;
-// width: 24rem;
+
 height:24rem;
   object-fit: cover;
+  @include desktop{
+      height:32rem;
+  }
 }
 
 .book__section{
@@ -55,13 +56,13 @@ margin-bottom:4rem;
 }
 
 .book__img-box{
-flex-basis: 40%;
+flex-basis: 50%;
 // border:1px solid purple;
 }
 
 
 .book__details-box{
-flex-basis:60%;    
+flex-basis:50%;    
 // flex:1;
 margin-left:1rem;
  @include desktop{
@@ -139,14 +140,15 @@ display: none;
 }
 
 .book__fav-box{
+    display: flex;
+    // border:1px solid blue;
+    align-items: center;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    // flex:1;
+    // border:1px solid green;
+    align-items: flex-end;
     @include desktop{
-        display: flex;
-        // border:1px solid blue;
-        align-items: center;
-        font-size: 1.2rem;
-        line-height: 1.8rem;
-        // flex:1;
-        // border:1px solid green;
-        align-items: flex-end;
+        
     }
 }

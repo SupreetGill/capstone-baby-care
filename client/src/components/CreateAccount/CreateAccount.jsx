@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import hamburger from '../../assets/images/hamburger.svg';
 import google from '../../assets/images/google.svg';
 import place from '../../assets/images/cycle.png';
 import './CreateAccount.scss';
+import axios from 'axios';
 
 class CreateAccount extends Component {
 
     state = {
          name : '',
          email : '',
-         password : ''    
+         password : ''   ,
+         isRegistered : false 
     }
 
     handleChange = (e)=>{
@@ -20,8 +22,28 @@ class CreateAccount extends Component {
         })
     }
 
+    handleSubmit = (e)=>{
+        e.preventDefault();
+    const body = {
+        fullName :this.state.name,
+        email: this.state.email,
+        password:this.state.password
+    }
+    axios.post('http://localhost:5000/users/create',body)
+    .then(res=>{
+       alert('Registered Successfully!!')
+       this.setState({
+           isRegistered : true
+       })
+      
+    })
+    }
+
     render() {
-        const {name, email, password} = this.state;
+        const {name, email, password, isRegistered} = this.state;
+        if(isRegistered){
+            return <Redirect to = '/login' />
+        }
         return (
             <section className = 'info' >
                 <div className = 'info__box-mobile'>
@@ -30,7 +52,7 @@ class CreateAccount extends Component {
                         <p className = 'info__para' >let's get you started with care</p>
                     </div>
                     {/* 7 items in form */}
-                    <form className = 'form' action="">
+                    <form onSubmit= {this.handleSubmit} className = 'form' action="">
                         <div className = 'form__box1  form__div' >
                             <label className = 'form__label' htmlFor="name">Full Name</label>
                             <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = 'Venus Angios' name = 'name' value = {name} id ='name' />

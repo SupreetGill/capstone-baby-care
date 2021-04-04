@@ -57,6 +57,11 @@ router.get('/recipeByCategory/:categoryid', (req,res)=>{
                 error:error
             })
         }
+        result.map(recipe=>{
+            const imagePath = `http://localhost:5000/images/recipeImages/${recipe.image}` 
+            recipe.image = imagePath
+            return recipe;
+          })
         return res.status(200).json({
             data:result
         })
