@@ -19,7 +19,7 @@
 .detail__img{
  width:70%;
  border:1px solif blue;
- height:25rem;
+//  height:25rem;
  object-fit: cover;
  @include desktop{
      height:auto;
@@ -108,6 +108,10 @@ display: block;
 width:90%;
 max-width:28rem;
 text-align: center;
+ &:hover{
+     background-color:#154681; 
+     color:white;
+ }
     @include desktop{
         width:20%;
         margin-top:8rem ;

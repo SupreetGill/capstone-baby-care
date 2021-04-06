@@ -24,6 +24,7 @@
 }
 
 .recipes__li-div{
+    cursor: pointer;
     @include desktop{
         // flex-basis: 13%;
         // border:1px solid purple;
@@ -73,6 +74,9 @@ font-size: 1.6rem;
     flex-basis:90%;
     margin: auto;
     margin-bottom:6rem;
+    //general
+    max-height: 45rem;
+    max-width: 40rem;
 
     @include desktop{
     flex-basis: 23%;

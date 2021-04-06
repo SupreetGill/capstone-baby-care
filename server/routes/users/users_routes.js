@@ -332,6 +332,103 @@ router.delete('/deletechild/:babyId', checkAuth, (req,res)=>{
     )
 })
 
+// all baby list
+router.get('/allchild', checkAuth, (req,res)=>{
+    // now we will check if the token verified by middleware belongs to our user in question?
+    //encoded user id -> is coming from the jwt token, it is part of teh jwt token
+    const encodedUserId = res.userData.data.id;
+    //decoding the id
+    const userIdDecoded = Buffer.from(encodedUserId, "base64").toString("ascii");
+    //the actual token sent by user, coming from the front end,
+    const userToken = res.userData.token; //
+
+//check auth -> is just checking token structure is right, 
+// db query is now chceking token against the db token
+    db.query(
+        "select secret_key from users where user_id = ?",
+        [userIdDecoded],
+        (error, result) => {
+            if(error){
+                return res.status(500).json({
+                    error: error
+                })
+            }
+            else if(result[0].secret_key === userToken){
+                // fetch all baby list from database
+                db.query(
+                    "select * from baby_details where user_id = ?",
+                    [userIdDecoded],
+                    (error, result) =>{
+                        if(error){
+                            return res.status(500).json({
+                                error: error
+                            })
+                        }
+                        return res.status(200).json({
+                            data: result,
+                            message: 'All baby list'
+                        })
+                    }
+                )
+            }
+            else {
+                return res.status(404).json({
+                    message: "Token don't match"
+                })
+            }
+        }
+    )
+})
+
+// single child fetch 
+
+router.get('/singlechild/:babyid', checkAuth, (req,res)=>{
+    // now we will check if the token verified by middleware belongs to our user in question?
+    //encoded user id -> is coming from the jwt token, it is part of teh jwt token
+    const encodedUserId = res.userData.data.id;
+    //decoding the id
+    const userIdDecoded = Buffer.from(encodedUserId, "base64").toString("ascii");
+    //the actual token sent by user, coming from the front end,
+    const userToken = res.userData.token; 
+    const babyId = req.params.babyid;
+
+//check auth -> is just checking token structure is right, 
+// db query is now chceking token against the db token
+    db.query(
+        "select secret_key from users where user_id = ?",
+        [userIdDecoded],
+        (error, result) => {
+            if(error){
+                return res.status(500).json({
+                    error: error
+                })
+            }
+            else if(result[0].secret_key === userToken){
+                // fetch all baby list from database
+                db.query(
+                    "select * from baby_details where baby_id = ?",
+                    [babyId],
+                    (error, result) =>{
+                        if(error){
+                            return res.status(500).json({
+                                error: error
+                            })
+                        }
+                        return res.status(200).json({
+                            data: result[0],
+                            message: 'single baby detail'
+                        })
+                    }
+                )
+            }
+            else {
+                return res.status(404).json({
+                    message: "Token don't match"
+                })
+            }
+        }
+    )
+})
 
 // const generateKey  = async() => {
 //     //generate key

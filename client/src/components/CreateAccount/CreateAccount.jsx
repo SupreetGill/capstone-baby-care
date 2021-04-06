@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import hamburger from '../../assets/images/hamburger.svg';
 import google from '../../assets/images/google.svg';
-import place from '../../assets/images/cycle.png';
+import baba from '../../assets/images/baba.jpeg'
+// import dolphin from '../../assets/images/dolphins.jpeg';
 import './CreateAccount.scss';
 import axios from 'axios';
+import Header from '../Header/Header';
 
 class CreateAccount extends Component {
 
@@ -45,6 +47,8 @@ class CreateAccount extends Component {
             return <Redirect to = '/login' />
         }
         return (
+            <>
+            <Header/>
             <section className = 'info' >
                 <div className = 'info__box-mobile'>
                     <div className = 'info__start'>
@@ -88,11 +92,12 @@ class CreateAccount extends Component {
                 </div>
                 {/* for desktop */}
                 <div className ='info__box-desktop' >    
-                   <img className = 'info__desktop-img' src={place} alt=""/>
+                   <img className = 'info__desktop-img' src={baba} alt=""/>
                 </div>
 
 
             </section>
+            </>
         );
     }
 }

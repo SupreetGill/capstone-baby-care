@@ -3,13 +3,21 @@ import React, { Component } from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
 // import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
-import carrot from '../../assets/images/recipes/carrot.jpeg';
-import broccoli from '../../assets/images/recipes/broccoli.jpeg'
+import bowl from '../../assets/images/bowl.svg';
+import jars from '../../assets/images/jars.svg';
+import om from '../../assets/images/om.svg';
+import spoons from '../../assets/images/spoons.svg';
+import apple from '../../assets/images/apple.svg';
+import rice from '../../assets/images/rice.svg';
 import './Recipes.scss';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Form } from "react-bootstrap";
+import Header from '../Header/Header';
+
+
+
 class Recipes extends Component {
 
    state = {
@@ -64,15 +72,16 @@ const selectedCat = e.target.id;
         if(!recipeCategoriesArr || !recipesArr) {
             return <p>Loading</p>
         }
-        return (
+        return (<>
+           <Header/>
             <main className = 'recipes'>
                 <nav className = 'recipes__nav'>
                     <ul className = 'recipes__nav-ul'>
 
                 {recipeCategoriesArr.map(category=>{
                   return  <div className = 'recipes__li-div'>
-                                    <li onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</li>
-                                </div>    
+                            <li onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</li>
+                        </div>    
                     
                 })}
                            
@@ -81,12 +90,10 @@ const selectedCat = e.target.id;
                         <Form.Group controlId="exampleForm.SelectCustom">
                             <Form.Control as="select" custom>
                             {recipeCategoriesArr.map(category=>{
-                                                    
-                                                    return  <option  onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</option>
+                                return  <option  onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</option>
                                                     {/* <li onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</li> */}
-                                                {/* </div>     */}
-                                    
-                                })}
+                                                {/* </div>     */}    
+                            })}
                             {/* <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -256,6 +263,7 @@ const selectedCat = e.target.id;
                     
                 </section>
             </main>
+            </>
         );
     }
 }

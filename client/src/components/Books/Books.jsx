@@ -6,6 +6,7 @@ import happy from '../../assets/images/happy.png';
 import './Books.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import axios from 'axios';
+import Header from '../Header/Header';
 import { v4 as uuidv4 } from 'uuid';
 
 class Books extends Component {
@@ -31,7 +32,8 @@ class Books extends Component {
       if(!booksArr){
           return <p>Loading</p>
       }
-        return (
+        return (<>
+                <Header/>
         
             <section className = "book">
                 <div className = "book__main-top">
@@ -60,6 +62,7 @@ class Books extends Component {
               })}
               </div>
            </section>
+           </>
            
         );    
     }

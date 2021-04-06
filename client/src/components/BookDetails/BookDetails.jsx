@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import baby from '../../assets/images/baby_care.jpg';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import './BookDetails.scss';
+import Header from '../Header/Header';
 import axios from 'axios';
 
 class BookDetails extends Component {
@@ -31,7 +32,8 @@ class BookDetails extends Component {
         if(!bookDetails){
             return <p>Loading</p>
         }
-        return (
+        return (<>
+            <Header/>
             <section className = "detail">
                
                     <div className = "details__img-box">
@@ -91,6 +93,7 @@ class BookDetails extends Component {
                 </div> */}
 
             </section>
+            </>
         );
     }
 }

@@ -9,14 +9,18 @@
 }
 
 .profile__intro-box{
+    display: flex;
+    align-items: center;
+    // border:1px solid pink;
     @include desktop{
-        display: flex;
-        align-items: center;
-        // border:1px solid pink;
+       
     }
 }
 
 .profile__hand-img{
+    width:35px;
+    height:35px;
+    margin-right:1rem;
     @include desktop{
         width:50px;
         height:50px;
@@ -111,6 +115,11 @@
 }
 
 .kids__dd-btn{
+    &:hover{
+        background-color:#154681;
+        color:white;
+        text-decoration: none;
+    }
 @include desktop{
     background-color:  #154681;
     color:white;
@@ -144,11 +153,12 @@
     flex-wrap: wrap;
 @include desktop{
     display: flex;
+    flex-wrap: nowrap;
     border:1px solid #F5F9FF;
     border-radius:4rem;
     // box-shadow: rgba(0, 0, 0, 0.08);
     margin-bottom:2.5rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: #F5F9FF;
     padding:2rem;
 
@@ -157,15 +167,22 @@
 
 .kids__inner{
  width:100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 1rem;
     @include desktop{
-        display: flex;
+        margin-bottom: 0;
+        justify-content: flex-start;
         // border:1px solid pink;
-        align-items: center;
+        
     }
 }
 
 .kids__img{
-
+   margin-right:1.5rem;
+   width:70px;
+   height: 70px;
     @include desktop{
         width:50px;
         height: 50px;
@@ -173,43 +190,62 @@
 }
 
 .kid__name{
+    font-weight:600;
+    font-size:1.8rem;
+    line-height: 2rem;
+    color:#6B7177;
     @include desktop{
-     font-weight:600;
+   
      font-size:2rem;
-     line-height: 2rem;
-     color:#6B7177
+   
+  
 }
 
 }
 .kids__inner-diff{
-    width:100%;
+    width:50%;
+    // border: 1px solid purple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom:2rem;
     @include desktop{
-        display: flex;
-        flex-direction: column;
-        // border:1px solid pink;
+        width:100%;
+        margin-bottom:0;
+       
+       
     }
 }
 
 .kids__feature{
-
-    @include desktop{
     font-family: Poppins;
-    font-weight:700;
+    color: #154681;
+    font-weight: bold;
+    font-size: 1.4rem;
+    line-height:1.8rem;
+    margin-bottom: 0.8rem;
+    @include desktop{
+   
+    // font-weight:700;
     font-size: 1.8rem;
     line-height:1.8rem;
-    color: #154681;
-    margin-bottom: 0.8rem;
+    
+    // margin-bottom: 0.8rem;
 
     }
 }
 
 .kids__feature-value{
-    @include desktop{
-        font-family: Poppins;
+    font-family: Poppins;
         font-weight:400;
+        font-size: 1.4rem;
+        line-height:1.8rem;
+       color: #6B7177;
+    @include desktop{
+       
         font-size: 1.6rem;
         line-height:2.2rem;
-       color: #6B7177;
+    
      
     }
 

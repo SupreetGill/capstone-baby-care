@@ -17,34 +17,64 @@
 }
 
 .activity__chart{
-
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     @include desktop{
-        display:flex;
-        justify-content: space-between;
+        flex-wrap: nowrap;
+        // display:flex;
+        // justify-content: space-between;
     }
 }
 
 .activity__type{
-@include desktop{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border:1px solid purple;
+    // border:1px solid purple;
+    flex-basis: 45%;
+    margin-bottom: 2rem;
+    padding:1rem;
+//carefully---------
+// background: #F5F9FF;
+background: #FFFFFF;
+box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.08);
+// border-radius: 50px 50px 6px 6px;
+
+
+
+@include desktop{
+    margin-bottom: 0;
+    padding:0;
+    box-shadow: none;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // border:1px solid purple;
     flex-basis: 20%;
 }
 }
 
 .activity__img{
-@include desktop{
-    width:60px;
-    height:60px;
-}
+    width:50px;
+    height:50px;
+    @include desktop{
+        width:60px;
+        height:60px;
+    }
 }
 
 .activity__title{
-@include desktop{
     font-family: Poppins;
+//   font-weight: 500;
+    font-size:1.4rem ;
+    line-height: 1.8rem;
+    color:#154681;
+    margin:1.5rem 0;
+@include desktop{
+    // font-family: Poppins;
     font-weight: 600;
     font-size:1.8rem ;
     line-height: 2.2rem;
@@ -56,37 +86,73 @@
 .acitvity__holder{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+//added here-- will have to check its affect on desk
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    // border: 1px solid pink;
+    //added only here
+    @include desktop{
+        flex-wrap: nowrap;
+    }
 }
 
 .activity__count-box{
-
+    display:flex;
+    align-items: center;
+    width:100%;
+    justify-content: center;
+    //justify not needed on deskop--will have to see
     @include desktop{
-        display:flex;
-        align-items: center;
+        justify-content: flex-start;
+        //----------decide on width
+        // display:flex;
+        // align-items: center;
+        width:28%;
     }
 }
 
 .activity__minus{
-
+    width:20px;
+    height:20px;
+    @include desktop{
+        width:23px;
+        height:23px;
+    }
 }
 
 .activity__number{
-@include desktop{
     margin:0 1rem;
     font-size: 1.4rem;
     color:#6B7177;
+@include desktop{
+    margin:0 1rem;
+    font-size: 1.4rem;
+  
 }
 }
 
 .activity__plus{
-
+    width:20px;
+    height:20px;
+    @include desktop{
+        width:23px;
+        height:23px;
+    }
 }
 
 .activity__counter-box{
-@include desktop{
-    margin-left:2rem;
+   margin-top:1rem;
     padding:1rem 1.5rem;
     background-color:lightgoldenrodyellow;
+    margin-left:0;
+    padding:1rem;
+@include desktop{
+    margin-top:0;
+    margin-left:2rem;
+    // padding:1rem 1.5rem;
+    // background-color:lightgoldenrodyellow;
     
 }
 }
@@ -97,4 +163,8 @@
     line-height: 1.8rem;
     color:#154681;
 }
+}
+
+.activity__counter-box--margin{
+    margin-left:0;
 }

@@ -11,6 +11,8 @@ import BookDetails from './components/BookDetails/BookDetails';
 import Profile from './components/Profile/Profile';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import Dashboard from './components/Dashboard/Dashboard';
+import AddForm from './components/AddForm/AddForm';
+import EditChildDetails from './components/EditChildDetails/EditChildDetails' ;
 
 
 class App extends Component {
@@ -18,7 +20,7 @@ class App extends Component {
     return (
       <div className = "App">
         <BrowserRouter>
-          <Header/>
+          {/* <Header/> */}
           <Switch>
             <Route exact path = '/' render = {(props) => <Home {...props}/>}/>
             <Route exact path = '/login' render = {(props)=> <Login {...props} />} />
@@ -29,6 +31,9 @@ class App extends Component {
             <Route exact path = '/recipes' render = {(props)=> <Recipes {...props} />} />
             <Route exact path = '/recipe/:id' render = {(props)=> <RecipeDetails {...props} />} />
             <Route exact path = '/dashboard' render = {(props)=> <Dashboard {...props} />} />
+            <Route exact path = '/addchild' render = {(props)=> <AddForm{...props} />} />
+            <Route exact path = '/EditChildDetails/:childid' render = {(props)=> <EditChildDetails{...props} />} />
+
            
           </Switch>
         </BrowserRouter>

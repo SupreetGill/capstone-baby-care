@@ -13,11 +13,14 @@ import img4 from '../../assets/images/img4.png';
 import img1 from '../../assets/images/img1.png';
 import img2 from '../../assets/images/img2.png';
 import img3 from '../../assets/images/img3.png';
+import Header from '../Header/Header';
 import './Home.scss';
 
 class Home extends Component {
     render() {
         return (
+            <>
+            <Header/>
             <main className = "home">
 
                 <section className = "home__section home__one" >
@@ -70,6 +73,7 @@ class Home extends Component {
 
               
             </main>
+            </>
         );
     }
 }

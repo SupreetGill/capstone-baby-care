@@ -18,6 +18,7 @@ padding:2.7rem 3.3rem 4.7rem;
 }
 
 .info__box-desktop{
+    display:none;
     @include desktop{
         // border: 1px solid pink;
         flex-basis: 50%;

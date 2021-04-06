@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
-import place from '../../assets/images/cycle.png';
+import love from '../../assets/images/love.jpeg';
 import './Login.scss';
 import axios from 'axios';
+import Header from '../Header/Header';
 
 class Login extends Component {
 
@@ -56,6 +57,9 @@ handleSubmit = (e)=>{
            return <Redirect to = '/profile' />
         }
         return (
+            <>
+            <Header/>
+            
             <section className = 'info' >
             <div className = 'info__box-mobile'>
                 <div className = 'info__start'>
@@ -92,11 +96,11 @@ handleSubmit = (e)=>{
             </div>
             {/* for desktop */}
             <div className ='info__box-desktop' >    
-                   <img className = 'info__desktop-img' src={place} alt=""/>
+                   <img className = 'info__desktop-img' src={love} alt=""/>
             </div>
            
         </section>
-    
+    </>
         );
     }
 }
