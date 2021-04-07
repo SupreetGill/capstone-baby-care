@@ -3,6 +3,7 @@ import {Link, Redirect} from 'react-router-dom';
 import hamburger from '../../assets/images/hamburger.svg';
 import google from '../../assets/images/google.svg';
 import baba from '../../assets/images/baba.jpeg'
+import bottle from '../../assets/images/bottle.jpeg'
 // import dolphin from '../../assets/images/dolphins.jpeg';
 import './CreateAccount.scss';
 import axios from 'axios';
@@ -47,27 +48,26 @@ class CreateAccount extends Component {
             return <Redirect to = '/login' />
         }
         return (
-            <>
-            <Header/>
+             
             <section className = 'info' >
                 <div className = 'info__box-mobile'>
                     <div className = 'info__start'>
                         <h1 className = 'info__heading' >Welcome </h1>
                         <p className = 'info__para' >let's get you started with care</p>
                     </div>
-                    {/* 7 items in form */}
+            
                     <form onSubmit= {this.handleSubmit} className = 'form' action="">
                         <div className = 'form__box1  form__div' >
                             <label className = 'form__label' htmlFor="name">Full Name</label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = 'Venus Angios' name = 'name' value = {name} id ='name' />
+                            <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = '' name = 'name' value = {name} id ='name' />
                         </div>
                         <div className = 'form__box2 form__div ' >
                             <label className = 'form__label' htmlFor="email">Email address </label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="email" required placeholder = 'venus@gmail.com' name = 'email' value = {email} id ='email' />
+                            <input className = 'form__input' onChange = {this.handleChange} type="email" required placeholder = '' name = 'email' value = {email} id ='email' />
                         </div>
                         <div className = 'form__box3 form__div '>
                             <label className = 'form__label' htmlFor="password">Password</label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="password" placeholder='........' required name = 'password' value = {password} id = 'password' />  
+                            <input className = 'form__input' onChange = {this.handleChange} type="password" placeholder='' required name = 'password' value = {password} id = 'password' />  
                         </div>
                         <div className = 'form__box4 form__div ' >
                             <img className = 'form__check' src= {hamburger} alt=""/>
@@ -92,12 +92,12 @@ class CreateAccount extends Component {
                 </div>
                 {/* for desktop */}
                 <div className ='info__box-desktop' >    
-                   <img className = 'info__desktop-img' src={baba} alt=""/>
+                   <img className = 'info__desktop-img' src={bottle} alt=""/>
                 </div>
 
 
             </section>
-            </>
+            
         );
     }
 }

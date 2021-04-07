@@ -13,28 +13,48 @@ import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddForm from './components/AddForm/AddForm';
 import EditChildDetails from './components/EditChildDetails/EditChildDetails' ;
+import DailyActivity from './components/DailyActivity/DailyActivity';
 
 
 class App extends Component {
+
+  state = {
+    isLoggedIn :false
+  }
+
+  loginInUser=()=>{
+    console.log('user shud be logged In')
+    this.setState({
+      isLoggedIn:true
+    })
+  }
+
+logOutUser = ()=>{
+  this.setState({
+    isLoggedIn:false
+  })
+}
+
+
   render() {
+    const {isLoggedIn} = this.state;
     return (
       <div className = "App">
         <BrowserRouter>
-          {/* <Header/> */}
+          <Header loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} logOutUser = {this.logOutUser} />
           <Switch>
-            <Route exact path = '/' render = {(props) => <Home {...props}/>}/>
-            <Route exact path = '/login' render = {(props)=> <Login {...props} />} />
-            <Route exact path = '/create-acct' render = {(props)=> <CreateAccount {...props} />} />
-            <Route exact path = '/profile' render = {(props)=> <Profile {...props} />} />
-            <Route exact path = '/books' render = {(props)=> <Books {...props} />} />
-            <Route exact path = '/books/:id' render = {(props)=> < BookDetails {...props} />} />
-            <Route exact path = '/recipes' render = {(props)=> <Recipes {...props} />} />
-            <Route exact path = '/recipe/:id' render = {(props)=> <RecipeDetails {...props} />} />
-            <Route exact path = '/dashboard' render = {(props)=> <Dashboard {...props} />} />
-            <Route exact path = '/addchild' render = {(props)=> <AddForm{...props} />} />
-            <Route exact path = '/EditChildDetails/:childid' render = {(props)=> <EditChildDetails{...props} />} />
-
-           
+            <Route exact path = '/' render = {(props) => <Home loggedIn= {isLoggedIn} handleLogin = {this.loginInUser} {...props}/>}/>
+            <Route exact path = '/login' render = {(props)=> <Login loggedIn= {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
+            <Route exact path = '/create-acct' render = {(props)=> <CreateAccount loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
+            <Route exact path = '/profile' render = {(props)=> <Profile loggedIn = {isLoggedIn} handleLogin = {this.loginInUser}{...props} />} />
+            <Route exact path = '/books' render = {(props)=> <Books loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
+            <Route exact path = '/books/:id' render = {(props)=> < BookDetails loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
+            <Route exact path = '/recipes' render = {(props)=> <Recipes loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
+            <Route exact path = '/recipe/:id' render = {(props)=> <RecipeDetails loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
+            <Route exact path = '/dashboard' render = {(props)=> <Dashboard loggedIn = {isLoggedIn} handleLogin = {this.loginInUser}{...props} />} />
+            <Route exact path = '/addchild' render = {(props)=> <AddForm{...props} loggedIn = {isLoggedIn} handleLogin = {this.loginInUser}/>} />
+            <Route exact path = '/EditChildDetails/:childid' render = {(props)=> <EditChildDetails loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
+            <Route exact path = '/dailyactivity/:baby_id' render = {(props)=> <DailyActivity loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />    
           </Switch>
         </BrowserRouter>
       </div>

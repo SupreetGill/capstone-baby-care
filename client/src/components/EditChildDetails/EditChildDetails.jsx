@@ -24,14 +24,13 @@ class EditChildDetails extends Component {
         const header = {
             Authorization: sessionStorage.getItem('jwt')
         }
-        // console.log(babyid)
         axios.get(`http://localhost:5000/users/singlechild/${babyid}`,{headers: header})
       .then(res=>{
           console.log(res.data.data);
           this.setState({
           selectedChild : res.data.data
           })
-          // check this redirect
+      
       });
     }
   
@@ -55,7 +54,7 @@ class EditChildDetails extends Component {
       const header = {
           Authorization: sessionStorage.getItem('jwt')
       }
-      //check the route ...
+  
       const babyid = this.props.match.params.childid;
       axios.post(`http://localhost:5000/users/editchild/${babyid}`,body,{headers: header})
       .then(res=>{
@@ -77,15 +76,13 @@ class EditChildDetails extends Component {
         }
 
         return(
-        <>
-            <Header/>
             <section className = 'info' >
                 <div className = 'info__box-mobile'>
                     <div className = 'info__start'>
                         <h1 className = 'info__heading' >Welcome </h1>
                         <p className = 'info__para info__yellow' >Update details here :) </p>
                     </div>
-                    {/* 7 items in form */}
+                
                     <form onSubmit= {this.handleSubmit} className = 'form' action="">
                         <div className = 'form__box1  form__div' >
                             <label className = 'form__label' htmlFor="name">Full Name</label>
@@ -118,7 +115,6 @@ class EditChildDetails extends Component {
 
 
             </section>
-            </>
                 )
     }
 }

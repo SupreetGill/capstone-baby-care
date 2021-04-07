@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-// import read from '../../assets/images/read.png';
-// import food from '../../assets/images/food.png';
-// import daily from '../../assets/images/daily.png';
-// import croc from '../../assets/images/croc.png';
-
-// import mother from '../../assets/images/mother.png';
-// import chart from '../../assets/images/chart.png';
-// import babyfood from '../../assets/images/babyfood.png';
-// import cr from '../../assets/images/cr.png';
 import img4 from '../../assets/images/img4.png';
 import img1 from '../../assets/images/img1.png';
 import img2 from '../../assets/images/img2.png';
@@ -19,10 +10,7 @@ import './Home.scss';
 class Home extends Component {
     render() {
         return (
-            <>
-            <Header/>
             <main className = "home">
-
                 <section className = "home__section home__one" >
                     <div className = "home__image-box"> 
                         <img className = "home__image home__image-one" src= {img4} alt=""/>
@@ -69,11 +57,9 @@ class Home extends Component {
                     <div className = "home__text-box home__text-box--four ">       
                         <p className = "home__para home__para-absolute" >Ten little fingers, ten perfect toes, fill our hearts with love that overflows.</p>  
                     </div>
-                </section>
-
-              
+                </section>        
             </main>
-            </>
+    
         );
     }
 }

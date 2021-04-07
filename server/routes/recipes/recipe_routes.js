@@ -25,7 +25,7 @@ router.get('/recipe_category',(req,res)=>{
 
 router.get('/',(req,res)=>{
     db.query(
-        "select recipe_id, category_id, name, description, image from recipes",
+        "select r.recipe_id, r.category_id, r.name, r.description, r.image, (select count(*) from recipe_actions where action_type = 'like' and recipe_id = r.recipe_id) as like_count, (select count(*) from recipe_actions where action_type = 'comment' and recipe_id = r.recipe_id) as comment_count from recipes as r",
         [],
         (error, result)=>{
             if(error){
@@ -37,7 +37,8 @@ router.get('/',(req,res)=>{
                 const imagePath = `http://localhost:5000/images/recipeImages/${recipe.image}` 
                 recipe.image = imagePath
                 return recipe;
-              })
+            })
+
             return res.status(200).json({
                 data:result
             })
@@ -76,7 +77,7 @@ router.get('/recipeDetails/:recipeid', (req,res)=>{
     const recipeId = req.params.recipeid;
 
     db.query(
-     "select * from recipes where recipe_id =?",
+     "select r.recipe_id, r.category_id, r.name, r.description, r.image, r.ingredients, r.instructions, (select count(*) from recipe_actions where action_type = 'like' and recipe_id = r.recipe_id) as like_count, (select count(*) from recipe_actions where action_type = 'comment' and recipe_id = r.recipe_id) as comment_count from recipes as r where recipe_id =?",
      [recipeId],
      (error, result)=>{
         if(error){
@@ -143,46 +144,23 @@ router.post('/addComment/:recipeid',checkAuth,(req,res)=>{
 
 })
 
-router.get('/allcomment/:recipeid',checkAuth,(req,res)=>{
+router.get('/allcomment/:recipeid',(req,res)=>{
     // const userid = req.params.userid;
     const recipeid = req.params.recipeid;
 
-    const encodedUserId = res.userData.data.id;
-    const userId = Buffer.from(encodedUserId, "base64").toString("ascii");
-    //the actual token sent by user, coming from the front end,
-    const userToken = res.userData.token; //
-
+    // fetch all comment 
     db.query(
-        "select secret_key from users where user_id = ?",
-        [userId],
-        (error, result) => {
+        "select ra.id, ra.comment, us.full_name from recipe_actions as ra inner join users as us on ra.user_id = us.user_id where ra.recipe_id = ? and ra.action_type = ?",
+        [recipeid, 'comment'],
+        (error, result) =>{
             if(error){
                 return res.status(500).json({
                     error: error
                 })
             }
-            else if(result[0].secret_key === userToken){
-                // fetch all comment 
-                db.query(
-                    "select ra.id, ra.comment, us.full_name from recipe_actions as ra inner join users as us on ra.user_id = us.user_id where ra.recipe_id = ? and ra.action_type = ?",
-                    [recipeid, 'comment'],
-                    (error, result) =>{
-                        if(error){
-                            return res.status(500).json({
-                                error: error
-                            })
-                        }
-                        return res.status(200).json({
-                            data: result
-                        })
-                    }
-                )
-            }
-            else {
-                return res.status(404).json({
-                    message: "Token don't match"
-                })
-            }
+            return res.status(200).json({
+                data: result
+            })
         }
     )
 

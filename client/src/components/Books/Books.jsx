@@ -32,37 +32,34 @@ class Books extends Component {
       if(!booksArr){
           return <p>Loading</p>
       }
-        return (<>
-                <Header/>
-        
-            <section className = "book">
-                <div className = "book__main-top">
-                    <img className = "book__main-img" src= {happy} alt=""/>
-                </div>  
-                <div className = "book__section">   
-              {/*Through map  */}
-              {booksArr.map(book=>{
-                  console.log(book.book_id)
-                return  <div key = {uuidv4()} className = "book__box">
-                            <div className = "book__img-box">
-                                <img className="book__img" src={book.image} alt=""/>
+        return (
+        <section className = "book">
+            <div className = "book__main-top">
+                <img className = "book__main-img" src= {happy} alt=""/>
+            </div>  
+            <div className = "book__section">   
+         
+            {booksArr.map(book=>{
+            return  <div key = {uuidv4()} className = "book__box">
+                        <div className = "book__img-box">
+                            <img className="book__img" src={book.image} alt=""/>
+                        </div>
+                        <div className="book__details-box" >
+                            <p className = "book__title" >{book.title}</p>
+                            <p className = "book__author" >{book.author}</p>
+                            <p className = "book__hard" >Hardcover Shipped Worldwide</p>
+                            <Link className = "book__buy"  exact to = '/'>Buy here</Link>
+                            <Link className = "book__complete" exact to = {`/books/${book.book_id}`}>More Details</Link>
+                            <div className = "book__fav-box">
+                                <FavoriteBorderIcon className= "book__heart" />
+                                <p className = "book__fav" >Add to favourites</p>
                             </div>
-                            <div className="book__details-box" >
-                                <p className = "book__title" >{book.title}</p>
-                                <p className = "book__author" >{book.author}</p>
-                                <p className = "book__hard" >Hardcover Shipped Worldwide</p>
-                                <Link className = "book__buy"  exact to = '/'>Buy here</Link>
-                                <Link className = "book__complete" exact to = {`/books/${book.book_id}`}>More Details</Link>
-                                <div className = "book__fav-box">
-                                    <FavoriteBorderIcon className= "book__heart" />
-                                    <p className = "book__fav" >Add to favourites</p>
-                                </div>
-                            </div>
-                        </div>                       
-              })}
-              </div>
-           </section>
-           </>
+                        </div>
+                    </div>                       
+            })}
+            </div>
+        </section>
+           
            
         );    
     }
@@ -71,52 +68,4 @@ class Books extends Component {
 export default Books;
 
 
-                    {/* <div className = "book__box">
-                        <div className = "book__img-box">
-                            <img className="book__img" src={baby} alt=""/>
-                        </div>
-                        <div className="book__details-box" >
-                            <p className = "book__title" >Baby Care Basics</p>
-                            <p className = "book__author" >by Drs. Jeremy Friedman</p>
-                            <p className = "book__hard" >Hardcover <img src="" alt=""/> Shipped Worldwide</p>
-                            <Link className = "book__buy"  path to = '/'>Buy here</Link>
-                            <Link className = "book__complete" exact to = '/books/id'>More Details</Link>
-                            <div className = "book__fav-box" >
-                                <FavoriteBorderIcon className= "book__heart" />
-                                <p classname = "book__fav" >Add to favourites</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className = "book__box">
-                        <div className = "book__img-box">
-                            <img className="book__img" src={baby} alt=""/>
-                        </div>
-                        <div className="book__details-box" >
-                            <p className = "book__title" >Baby Care Basics</p>
-                            <p className = "book__author" >by Drs. Jeremy Friedman</p>
-                            <p className = "book__hard" >Hardcover <img src="" alt=""/> Shipped Worldwide</p>
-                            <Link className = "book__buy"  path to = '/'>Buy here</Link>
-                            <Link className = "book__complete" exact to = '/books/id'>More Details</Link>
-                            <div className = "book__fav-box" >
-                                <FavoriteBorderIcon className= "book__heart" />
-                                <p classname = "book__fav" >Add to favourites</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className = "book__box">
-                        <div className = "book__img-box">
-                            <img className="book__img" src={baby} alt=""/>
-                        </div>
-                        <div className="book__details-box" >
-                            <p className = "book__title" >Baby Care Basics</p>
-                            <p className = "book__author" >by Drs. Jeremy Friedman</p>
-                            <p className = "book__hard" >Hardcover <img src="" alt=""/> Shipped Worldwide</p>
-                            <Link className = "book__buy"  path to = '/'>Buy here</Link>
-                            <Link className = "book__complete" exact to = '/books/id'>More Details</Link>
-                            <div className = "book__fav-box" >
-                                <FavoriteBorderIcon className= "book__heart" />
-                                <p classname = "book__fav" >Add to favourites</p>
-                            </div>
-                        </div>
-                    </div>         */}
+                   

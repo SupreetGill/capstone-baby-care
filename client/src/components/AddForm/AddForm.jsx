@@ -37,8 +37,7 @@ handleSubmit=(e)=>{
     }
     axios.post("http://localhost:5000/users/addchild",body,{headers: header})
     .then(res=>{
-        // console.log(res.data)
-        //check redirect here
+
         this.setState({
             isChildAdded: true
         })
@@ -53,8 +52,8 @@ handleSubmit=(e)=>{
             return <Redirect to='/profile' />
         }
 
-        return(<>
-        <Header/>
+        return(
+
         <section className = 'info' >
             <div className = 'info__box-mobile'>
                 <div className = 'info__start'>
@@ -92,7 +91,7 @@ handleSubmit=(e)=>{
             <img className = 'info__desktop-img' src= {world} alt=""/>
             </div>
     </section>
-    </>
+    
         )
     }
 }

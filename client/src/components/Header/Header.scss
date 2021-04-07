@@ -1,10 +1,6 @@
   @use '../../partials/font-faces.scss' as *;
   @use '../../partials/mixins.scss' as *;
-//   @mixin desktop {
-//     @media screen and (min-width: $desktop-breakpoint) {
-//       @content;
-//     }
-//   }
+
 
 
 .header{
@@ -12,16 +8,10 @@
     padding:3rem 1.6rem;
     justify-content: space-between;
     @include desktop{
-
     }
 }
 
-.header__logo{
-    // border:1px solid pink;
- 
-    // text-align: left;
-    // display: flex;
-}
+
 
 .header__dropdown-item{
     font-size: 2rem;
@@ -30,20 +20,17 @@
 
 }
 .header__logo-img{
- width:131px;
-
+    width:131px;
 }
 
 .header__desktop{
     display: none;
     @include desktop{
         display: block;
-        // border:1px solid pink;
     }
 }
 
 
-//dropdown
 .header__dropdown{
     @include desktop{
         display: flex;
@@ -60,8 +47,8 @@
         padding: 0 1rem;
         margin-left: 1rem;
         &:focus{
-            outline: none;
-box-shadow: none;
+        outline: none;
+        box-shadow: none;
         }
     }
     
@@ -81,27 +68,18 @@ box-shadow: none;
     color: #154681;
     @include desktop{
         margin-left:4rem;
-        // border:1px solid pink;
         padding:0 1rem;
         border-radius: 2rem;
         &:hover{
             background-color:cornsilk;
-         color:deepskyblue;
-            // color:rgb(64, 145, 148);
+            color:deepskyblue;
+
         }
     }
     
 }
 
-.header__books{
 
-}
-.header__recipes{
-
-}
-.header__login{
-
-}
 .header__create{
 @include desktop{
     font-family: Poppins;
@@ -117,25 +95,18 @@ box-shadow: none;
 
 .header__mobile{
     display:block;
-    // border:1px solid green;
-
-
     margin-right:2rem;
     @include desktop{
         display:none;
     }
 }
 
-.header__mobile-ham-box{
 
-}
 
 
 .header__mobile-ul{
     display: block;
-    // check this
     position: fixed;
-    // border: 1px solid green;
     height: 100vh;
     width: 100%;
     top: 87px;
@@ -160,19 +131,15 @@ box-shadow: none;
     line-height: 24px;  
     color: #154681;
     border-bottom:1px solid #EFEFEF;
-    // border:1px solid blue;
     &:hover{
         background-color: floralwhite;
         font-weight: 800;
     }
 }
 
-.header__mobile-only{
 
-}
 
 .header__padding{
-
     padding: 2.5rem 0;
     display: block;
     border-bottom: 1px solid #EFEFEF;

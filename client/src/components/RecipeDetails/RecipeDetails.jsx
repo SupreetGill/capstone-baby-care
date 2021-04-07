@@ -18,10 +18,23 @@ class RecipeDetails extends Component {
        singleRecipe: null,
        allComments:null,
        ingredents: null,
-       instructions: null
+       instructions: null,
+       showComments:false,
+       isLoggedIn :false
+       
    }
 
 componentDidMount(){
+    if(sessionStorage.getItem('jwt')){
+        this.setState({
+            isLoggedIn: true
+        })
+    } else {
+        this.setState({
+            isLoggedIn: false
+        })
+    }
+
     const selectedRecipe =this.props.match.params.id;
     console.log(selectedRecipe)
     axios.get(`http://localhost:5000/recipes/recipeDetails/${selectedRecipe}`)
@@ -35,16 +48,9 @@ componentDidMount(){
             instructions: ins
         })
 
-        // console.log(JSON.parse(res.data.data.ingredients)[0]);
-        // console.log(this.state.ingredents);
-        // console.log(this.state.instructions);
     })
 
-    const header = {
-        Authorization: sessionStorage.getItem('jwt')
-    }
-
-    axios.get(`http://localhost:5000/recipes/allcomment/${selectedRecipe}`, {headers: header})
+    axios.get(`http://localhost:5000/recipes/allcomment/${selectedRecipe}`)
     .then(res=>{
         console.log(res.data.data);
 
@@ -64,10 +70,11 @@ handleChange=(e)=>{
     
 }
 
+//adding a new piece of state---to handle toggle
 showComments = (e)=>{
   e.preventDefault();
     this.setState({
-        allComments:!this.state.allComments
+        showComments:!this.state.showComments
     })
 }
 
@@ -80,9 +87,7 @@ deleteComment= (id)=>{
   const header = {
     Authorization: sessionStorage.getItem('jwt')
 }
-//need to user_id and comment id
-// console.log(recipe_id)
-// ??? where wud comment_id come from ???
+
 axios.delete(`http://localhost:5000/recipes/deleteComment/${id}`,{headers: header})
 .then(res=>{
     axios.get(`http://localhost:5000/recipes/allcomment/${recipe_id}`, {headers: header})
@@ -93,14 +98,11 @@ axios.delete(`http://localhost:5000/recipes/deleteComment/${id}`,{headers: heade
             allComments: res.data.data
         })
     })
-    //we need to now make another axios request ..to get updated single Recipe with its
-    //updated likesa and comments
+  
 })
 }
 
 
-
-//bug in add comment server side-> user is able to add more than one comment ...
 addComment=(e)=>{
  const  recipe_id = this.props.match.params.id;
  const comment = this.state.comment;
@@ -111,7 +113,6 @@ addComment=(e)=>{
     Authorization: sessionStorage.getItem('jwt')
 }
  e.preventDefault();
-//need userid and comment id
 console.log(recipe_id);
 axios.post(`http://localhost:5000/recipes/addComment/${recipe_id}`,commentBody, {headers: header})
 .then(res=>{
@@ -119,12 +120,8 @@ axios.post(`http://localhost:5000/recipes/addComment/${recipe_id}`,commentBody, 
     this.setState({
         comment:''
     })
-     //we need to now make another axios request ..to get updated single Recipe with its
-    //updated likesa and comments
     axios.get(`http://localhost:5000/recipes/allcomment/${recipe_id}`, {headers: header})
     .then(res=>{
-        // console.log(res.data.data);
-
         this.setState({
             allComments: res.data.data
         })
@@ -133,9 +130,8 @@ axios.post(`http://localhost:5000/recipes/addComment/${recipe_id}`,commentBody, 
 }
 
 
-//not working 
+
 likesUpdate=()=>{
-    // e.preventDefault();
     const header = {
         Authorization: sessionStorage.getItem('jwt')
     }
@@ -143,21 +139,29 @@ likesUpdate=()=>{
     console.log(recipe_id)
     axios.post(`http://localhost:5000/recipes/like/${recipe_id}`, '', {headers: header})
         .then(res=>{
-            console.log(res.data);
+            const selectedRecipe =this.props.match.params.id;
+            axios.get(`http://localhost:5000/recipes/recipeDetails/${selectedRecipe}`)
+            .then(res=>{
+
+                this.setState({
+                    singleRecipe:res.data.data,
+                })
+
+            })
         })
 }
 
 
 
     render() {
-        const {singleRecipe, ingredents, instructions,allComments} = this.state;
+        const {singleRecipe, ingredents, instructions,allComments,isLoggedIn} = this.state;
 
         if (!singleRecipe || !instructions || !ingredents || !allComments){
             return <p>Loading ...</p>
         }
        
-        return (<>
-           <Header/>
+        return (
+
             <section className = 'recipe'>
                 <div className = 'recipe__img-box' >
                     <img className = 'recipe__img' src={singleRecipe.image} alt=""/>
@@ -171,31 +175,23 @@ likesUpdate=()=>{
                     {instructions.map(ins=>{
                         return <p className = 'recipe__instructions' >{ins}</p> 
                     })}
-                    {/* for(let key in instructions){
-                           
-                    } */}
-                    {/* <p className = 'recipe__instructions' >{singleRecipe.instructions}</p> */}
-
-{/* adding here likes an comments structure */}
-
                         <div className = 'popularity__main-box'>
                             <div className = 'popularity__inner-box' >
-                                {/* <div></div> */}
                                 <FavoriteIcon onClick = {this.likesUpdate} className = 'popularity__icon' />
-                                <p className = 'popularity__total' >466 likes</p>
+                                <p className = 'popularity__total' >{ singleRecipe.like_count } likes</p>
                             </div>
                             <div className = 'popularity__inner-box' >
                                 <ModeCommentIcon className = 'popularity__icon' />
-                                <p className = 'popularity__total' >22 comments</p>
+                                <p className = 'popularity__total' >{singleRecipe.comment_count} comments</p>
                             </div>
                         </div>
 
-{/* till here */}
+
                     <div className = 'recipe__comments-box' onClick = {this.showComments}>
                         <a className = 'recipe__comments-link' href="">View all Comments</a>
                     </div>
 
-                    {this.state.allComments ?
+                    {this.state.showComments ?
                     <div className = 'recipe__comments-appear'>
 
                         {allComments.map(c=>{
@@ -205,33 +201,11 @@ likesUpdate=()=>{
                                             <p className = 'recipe__name-person' >{c.full_name}</p>
                                             <p className = 'recipe__person-comment' >{c.comment}</p>
                                         </div>
-                                        <button type ='submit' className = 'recipe__form-btn'>
+                                        <button type ='submit' className = {isLoggedIn ? 'recipe__form-btn' : 'display-none' }>
                                             <DeleteIcon onClick = {()=>{this.deleteComment(c.id)}} className = 'recipe__form-btn--ui' />
                                          </button>
                                     </div>
                         })}
-                       
-                        {/* <div className = 'recipe__comments-conditional' >
-                            <img className = 'recipe__img-cnd' src={girl} alt=""/>
-                            <div className = 'recipe__comment-body-box' >
-                                <p className = 'recipe__name-person' >name of the person</p>
-                                <p className = 'recipe__person-comment' >this was a perfect recipe for my little one</p>
-                            </div>
-                        </div>
-                        <div className = 'recipe__comments-conditional' >
-                            <img className = 'recipe__img-cnd' src={girl} alt=""/>
-                            <div className = 'recipe__comment-body-box' >
-                                <p className = 'recipe__name-person' >name of the person</p>
-                                <p className = 'recipe__person-comment' >this was a perfect recipe for my little one</p>
-                            </div>
-                        </div>
-                        <div className = 'recipe__comments-conditional' >
-                            <img className = 'recipe__img-cnd' src={girl} alt=""/>
-                            <div className = 'recipe__comment-body-box' >
-                                <p className = 'recipe__name-person' >name of the person</p>
-                                <p className = 'recipe__person-comment' >this was a perfect recipe for my little one</p>
-                            </div>
-                        </div> */}
                     </div> : ''
                     }   
 
@@ -239,11 +213,11 @@ likesUpdate=()=>{
                         <img className = 'recipe__svg' src={girl} alt=""/>
                         <input className = 'recipe__form-input' onChange={this.handleChange} type="text" name = 'comment' value = {this.state.comment} placeholder='add a comment'/>
                         <div className = 'recipe__btn-div'>
-                            <button type ='submit' className = 'recipe__form-btn'>
+                            <button type ='submit' className = {isLoggedIn ? 'recipe__form-btn' : 'display-none' }>
                                 <DeleteIcon onClick = {this.deleteComment} className = 'recipe__form-btn--ui' />
                             </button>
-                            <button type = 'submit'className = 'recipe__form-btn' >
-                                <AddCircleIcon  onClick = {this.addComment} className = 'recipe__form-btn--ui' />
+                            <button type = 'submit' className = {isLoggedIn ? 'recipe__form-btn' : 'display-none' }>
+                                <AddCircleIcon  onClick = {this.addComment} className = 'recipe__form-btn--ui display-none' />
                             </button>   
                         </div>
                         
@@ -257,17 +231,10 @@ likesUpdate=()=>{
                         {ingredents.map(ing=>{
                             return <li className = 'recipes__li' >{ing}</li>
                         })}
-                        {/* <li className = 'recipes__li' >Ingredient two</li>
-                        
-                        <li className = 'recipes__li' >Ingredient four</li>
-                        <li className = 'recipes__li' >Ingredient five</li> */}
-                                    
+                                  
                     </ul>
                 </div>
-
-
             </section>
-            </>
         );
     }
 }

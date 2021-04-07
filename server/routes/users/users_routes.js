@@ -430,6 +430,110 @@ router.get('/singlechild/:babyid', checkAuth, (req,res)=>{
     )
 })
 
+// add baby activity
+router.post('/babyactivity/:babyId', checkAuth, (req,res)=>{
+    // now we will check if the token verified by middleware belongs to our user in question?
+    //encoded user id -> is coming from the jwt token, it is part of teh jwt token
+    const encodedUserId = res.userData.data.id;
+    //decoding the id
+    const userIdDecoded = Buffer.from(encodedUserId, "base64").toString("ascii");
+    //the actual token sent by user, coming from the front end,
+    const userToken = res.userData.token; //
+
+    const { feeds, diaper, tummy, words, createdat } = req.body;
+    const babyId = req.params.babyId;
+
+//check auth -> is just checking token structure is right, 
+// db query is now chceking token against the db token
+    db.query(
+        "select secret_key from users where user_id = ?",
+        [userIdDecoded],
+        (error, result) => {
+            if(error){
+                return res.status(500).json({
+                    error: error
+                })
+            }
+            else if(result[0].secret_key === userToken){
+                // add activity details in database
+                db.query(
+                    "insert into baby_activity (baby_id, feeds, diaper, tummy, words, createdat) values (?,?,?,?,?,?)",
+                    [babyId, feeds, diaper, tummy, words, createdat],
+                    (error, result) =>{
+                        if(error){
+                            return res.status(500).json({
+                                error: error
+                            })
+                        }
+                        return res.status(200).json({
+                            message: 'Baby activity added'
+                        })
+                    }
+                )
+            }
+            else {
+                return res.status(404).json({
+                    message: "Token don't match"
+                })
+            }
+        }
+    )
+})
+
+// fetch baby dashboard 
+router.get('/babyactivitylist', checkAuth, (req,res)=>{
+    // now we will check if the token verified by middleware belongs to our user in question?
+    //encoded user id -> is coming from the jwt token, it is part of teh jwt token
+    const encodedUserId = res.userData.data.id;
+    //decoding the id
+    const userIdDecoded = Buffer.from(encodedUserId, "base64").toString("ascii");
+    //the actual token sent by user, coming from the front end,
+    const userToken = res.userData.token; //
+
+    let date = new Date();
+    // let currentDate = date.toLocaleDateString().split('/').reverse().join('-');
+    let currentDate = date.toISOString().slice(0,10);
+
+//check auth -> is just checking token structure is right, 
+// db query is now chceking token against the db token
+    db.query(
+        "select secret_key from users where user_id = ?",
+        [userIdDecoded],
+        (error, result) => {
+            if(error){
+                return res.status(500).json({
+                    error: error
+                })
+            }
+            else if(result[0].secret_key === userToken){
+                db.query(
+                    "select bd.baby_id, bd.baby_name, bd.age, bd.gender, bd.height, bd.weight, ba.feeds, ba.diaper, ba.tummy, ba.words from baby_details as bd left join baby_activity as ba on bd.baby_id = ba.baby_id where bd.user_id = ? and ba.createdat = ?",
+                    [userIdDecoded, currentDate],
+                    (error, result) =>{
+                        if(error){
+                            return res.status(500).json({
+                                error: error
+                            })
+                        }
+                        return res.status(200).json({
+                            date: currentDate,
+                            data: result,
+                            message: 'Baby activity details'
+                        })
+                    }
+                )
+            }
+            else {
+                return res.status(404).json({
+                    message: "Token don't match"
+                })
+            }
+        }
+    )
+})
+
+
+
 // const generateKey  = async() => {
 //     //generate key
 //     generateKeyPair('ec', {

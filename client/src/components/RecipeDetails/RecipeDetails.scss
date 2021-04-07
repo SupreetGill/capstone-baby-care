@@ -2,45 +2,35 @@
 
 .recipe{
   padding:2rem 2rem;
-
   @include desktop{
     display: flex;
     padding:2rem 5rem;
   }
-
 }
 
 .recipe__img-box{
- flex-basis:100%;
-
+  flex-basis:100%;
   @include desktop{
-    // border:1px solid pink;
-    flex-basis:30%;
-    height:24vw;
-  }
-
+      flex-basis:30%;
+      height:24vw;
+    }
 }
 
 .recipe__img{
   width:100%;
   height:100%;
   object-fit:cover;
-
     @include desktop{
       width:100%;
       height:100%;
       object-fit:contain;
     }
-
 }
 
 .recipe__basic-info{
-
   @include desktop{
-    // border:1px solid pink;
     flex-basis:40%;
   }
- 
 }
 
 .recipe__title{
@@ -49,8 +39,7 @@
     font-size:1.6rem ;
     line-height: 1.8rem;
     color:#4B4B59
-  }
-  
+  } 
 }
 
 .recipe__about{
@@ -62,22 +51,18 @@
     padding-bottom:0.8rem;
     border-bottom:1px solid #E4E4E4;
  }
-  
 }
 
 .recipe__description{
-
   @include desktop{
     font-weight: 300;
     font-size:1.4rem ;
     line-height: 2rem;
     color:#6B7177;
   }
- 
 }
 
 .recipe__how{
-
   @include desktop{
     font-weight: 400;
     font-size:1.4rem ;
@@ -87,50 +72,38 @@
     margin:1.5rem 0;
     padding-bottom:0.5rem;
   }
-  
 }
 
 .recipe__instructions{
-
   @include desktop{
     font-weight: 300;
     font-size:1.4rem ;
     line-height: 2rem;
     color:#6B7177;
   }
- 
 }
 
-.recipe__comments-box{
-
-}
 
 .recipe__comments-link{
-
-  @include desktop{
-    font-weight: 400;
-    font-size:1.2rem ;
-    line-height: 1.8rem;
-    color:#154681;
-    text-decoration: underline;
-  }
- 
+    @include desktop{
+      font-weight: 400;
+      font-size:1.2rem ;
+      line-height: 1.8rem;
+      color:#154681;
+      text-decoration: underline;
+    }
 }
 
 .recipe__comments-appear{
-
   @include desktop{
     margin-bottom:1rem;
   }
-
 }
 
 
 .recipe__comments-conditional{
-
   @include desktop{
     display: flex;
-    // border:1px solid purple;
     align-items: center;
     padding:1rem 0;
   }
@@ -141,17 +114,12 @@
 .recipe__img-cnd{
 
   @include desktop{
-    // width:4.5rem;
-    // height:4.5rem;
+
   }
 }
 
-.recipe__comment-body-box{
-
-}
 
 .recipe__name-person{
-
   @include desktop{
     font-size:1.3rem ;
     line-height: 1.6rem;
@@ -161,7 +129,6 @@
 }
 
 .recipe__person-comment{
-
   @include desktop{
     font-weight: 300;
     font-size:1.3rem ;
@@ -171,19 +138,15 @@
 }
 
 .recipe__comment-form{
-
   @include desktop{
     display: flex;
     margin:1rem 0;
   }
 }
 
-.recipe__svg{
 
-}
 
 .recipe__form-input{
-
   @include desktop{
     flex:1;
     border-radius: 2rem;
@@ -199,15 +162,11 @@
     display: flex;
     margin-left:0.5rem;
   }
-
-  
 }
 
 .recipe__form-btn{
-
   background: none;
   .recipe__form-btn--ui{
-
     @include desktop{
       font-size: 2rem;
       line-height: 1.8rem;
@@ -217,24 +176,15 @@
 
 
 
-// .MuiSvgIcon-root{
-//   @include desktop{
-//     font-size: 2rem;
-//     line-height: 1.8rem;
-//   }
-// }
-
 .recipe__ingredients-box{
 
   @include desktop{
-    // border:1px solid pink;
     flex-basis: 30%;
   }
 
 }
 
 .recipe__ingredients{
-
  @include desktop{
    font-size:1.6rem;
    line-height:2rem;
@@ -244,7 +194,6 @@
 }
 
 .recipes__ul{
-
   @include desktop{
     font-weight:300;
     font-size:1.4rem;
@@ -254,14 +203,11 @@
   }
 }
 
-.recipes__li{
-    
-}
+
 
 .popularity__main-box{
   @include desktop{
     display: flex;
-    // border:1px solid pink;
     justify-content: space-between;
     margin:1rem 0;
   }
@@ -279,10 +225,7 @@
 
 }
 
-.popularity__icon{
 
-}
-
-.popularity__total{
-
+.display-none{
+  display: none;
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink,Link,Redirect} from 'react-router-dom';
 import hamburger from '../../assets/images/hamburger.svg';
 import logo from '../../assets/images/logo.svg';
 import './Header.scss';
 import {Dropdown } from 'react-bootstrap';
 import {withRouter} from 'react-router'
+import axios from 'axios';
 
 
 
@@ -12,10 +13,29 @@ class Header extends Component {
 
    state = {
        isShown : false,
-       isVerified:false
+       isVerified:false,
+       changeState: false,
+       userName :'',
+    
+       
    }
 
- 
+   componentDidMount(){
+        const header = {
+            Authorization: sessionStorage.getItem('jwt')
+        }
+
+        axios.get('http://localhost:5000/users/userDetails', {headers: header})
+        .then(res =>{
+            this.setState({
+                userName : res.data.data.full_name
+            }) 
+            const jwt = sessionStorage.getItem('jwt');
+            if(jwt){
+                this.props.handleLogin();
+            }
+        })
+   }
 
    handleToggle=()=>{
        console.log("check hamburger menu icon")
@@ -33,19 +53,22 @@ class Header extends Component {
 
 
 
-    loginCheck() {
-        const jwt = sessionStorage.getItem('jwt');
-        if(!jwt) {
-            return false;
-        } else {
-            return true;
+    
+    logout=()=>{
+        const header = {
+            Authorization: sessionStorage.getItem('jwt')
         }
+        axios.get(`http://localhost:5000/users/logout`, {headers: header})
+            .then(res=>{
+                sessionStorage.removeItem('jwt');   
+                this.props.logOutUser()     
+            })        
     }
 
-
     render() {
-        // const {isVerified} = this.state;
-        if(this.loginCheck()){
+        const {userName} = this.state;
+        if(this.props.loggedIn){
+            
             return (
                 <header className = ''>
 
@@ -54,10 +77,10 @@ class Header extends Component {
                         <div className = 'header__desktop header__dropdown'>
                             <NavLink className = 'header__books header__link' exact to = '/books'>Books</NavLink>
                             <NavLink className = 'header__recipes header__link' exact to = '/recipes'>Recipes</NavLink>
-                            <NavLink className = 'header__login header__link' exact to = '/'>Logout</NavLink>
+                            <NavLink onClick= {this.logout} className = 'header__login header__link' exact to = '/'>Logout</NavLink>
                                     <Dropdown >
                                         <Dropdown.Toggle className = 'header__dropdown-color' id="dropdown-basic" >
-                                            Anddy
+                                            {userName}
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu className= ''>
@@ -74,7 +97,7 @@ class Header extends Component {
                             <ul className = {this.state.isShown? 'header__mobile-ul' : 'header__mobile-ul--noshow' }>
                                 <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/books' ><li>Books</li></NavLink>
                                 <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/recipes'><li>Recipes</li></NavLink>
-                                <NavLink className = 'header__login header__padding header__link' exact to = '/'><li>Logout</li></NavLink>
+                                <NavLink onClick= {this.logout} className = 'header__login header__padding header__link' exact to = '/'><li>Logout</li></NavLink>
                                 <NavLink className = 'header__login header__padding header__link' exact to = '/dashboard'><li>DashBoard</li></NavLink>
                                 <NavLink className = 'header__login header__padding header__link' exact to = '/profile'><li>Change Password</li></NavLink>
                         
