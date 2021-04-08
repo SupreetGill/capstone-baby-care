@@ -5,12 +5,10 @@ const db = require('../../database/db');
 router.get('/', (req, res)=>{
     db.query(
         "select book_id, title, author,image from books",
-        //we need to put in [] only when we are filtering usign where clause
         [],
         (error,result)=>{
             if(error){
                 return res.status(500).json({
-                    //    message:"message",
                        error:error
                    })
                }

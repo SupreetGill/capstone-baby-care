@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../../database/db');
 const checkAuth = require('../../middleware/auth_check');
-// so db connection is reqd in route file.
+
 
 
 
@@ -96,13 +96,11 @@ router.get('/recipeDetails/:recipeid', (req,res)=>{
 
 
 router.post('/addComment/:recipeid',checkAuth,(req,res)=>{
-    // const userid = req.params.userid;
     const recipeid = req.params.recipeid;
     const comment = req.body.comment;
 
     const encodedUserId = res.userData.data.id;
     const userId = Buffer.from(encodedUserId, "base64").toString("ascii");
-    //the actual token sent by user, coming from the front end,
     const userToken = res.userData.token; //
 
     db.query(
@@ -115,7 +113,6 @@ router.post('/addComment/:recipeid',checkAuth,(req,res)=>{
                 })
             }
             else if(result[0].secret_key === userToken){
-                // add comment in database
                 db.query(
                     "insert into recipe_actions (action_type,user_id,recipe_id,comment) values (?,?,?,?)",
                     ['comment',userId,recipeid,comment],
@@ -302,37 +299,3 @@ router.post('/like/:recipeid',checkAuth,(req,res)=>{
 
 
 module.exports = router;
-// router.post('/add_category',(req,res)=>{
-//     const {name} = req.body;
-    
-//     db.query(
-//         "insert into recipe_category (name, status) values (?,?)",
-//         [ name, '1' ],
-//         (error, result) => {
-//             if(error) { 
-//                 return res.status(500).json({
-//                     message: "Databse error",
-//                     error: error
-//                 })
-//             }
-//             db.query(
-//                 "select name from recipe_category where category_id = ?",
-//                 [ result.insertId ],
-//                 (error, result) => {
-//                     if(error) { 
-//                         return res.status(500).json({
-//                             message: "Databse error",
-//                             error: error
-//                         })
-//                     }
-//                     return res.status(200).json({
-//                         message : "recipe category added",
-//                         category_added: result[0]
-//                     })
-//                 }
-//             )
-//         }
-//     )
-// })
-
-

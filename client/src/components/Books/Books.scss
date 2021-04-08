@@ -3,134 +3,119 @@
 
 .book{
     padding:0 2rem;
-}
 
-.book__main-top{
-    margin-bottom: 4rem;
+    &__main-top{
+        margin-bottom: 4rem;
+        width:100%;
+    }
+    &__main-img{
     width:100%;
-}
-
-
-.book__main-img{
-   width:100%;
-   height:13rem;
-   object-fit: cover;
-   @include desktop{
-       height:27rem;
-   }
-
-}
-
-.book__img{
-  width:100%;
-  @include desktop{
-    
-  }
-}
-
-.book__section{
+    height:13rem;
+    object-fit: cover;
     @include desktop{
-        display: flex;
-        flex-wrap: wrap;
-        padding:0 10rem;
-        justify-content: space-between;
+        height:27rem;
     }
-}
 
-.book__box{
-    max-width: 85rem;
-    max-height: 60rem;
-    display: flex;
-    margin-bottom:4rem;
-    justify-content: space-between;
-    @include desktop{
-        flex-basis: 33%;
     }
-}
-
-.book__img-box{
-    flex-basis: 47%;
-}
-
-
-.book__details-box{
-    flex-basis:47%;    
-    margin-left:1rem;
-    @include desktop{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-}
-
-.book__title{
-    font-size: 14px;
-    line-height: 18px;
-    color: #4B4B59;  
-    margin-bottom: 0.5rem;
-    @include desktop{
-        font-size: 1.6rem;
-        line-height: 2rem;
-    }
-}
-
-.book__author{
-    font-weight: 300;
-    font-size: 11px;
-    line-height: 14px;
-    color: #8C9094;
-    margin-bottom: 1rem;   
-}
-
-.book__price{
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    color: #4B4B59;
-    margin-bottom: 1rem;
-}
-
-.book__hard{
-    font-size: 12px;
-    line-height: 15px;
-    color: #6B7177;
-    
-}
-
-.book__buy{
-display: none;
-}
-
-.book__complete{
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 12px;
-    line-height: 15px;
-    color: #154681;
-    padding: 0.8rem;
-    font-weight: bold;
-    &:hover{
-        background-color:cornsilk;
-        text-decoration: none;
-       
-    }
-    @include desktop{
-        width:51%;
-        border-radius:20px;
-        font-size: 1.4rem;
-        line-height: 1.8rem;
-        padding:1rem;
-        margin-top: 7rem;    
-    }  
-}
-
-.book__fav-box{
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-    align-items: flex-end;
+    &__img{
+    width:100%;
     @include desktop{
         
+    }
+    }
+    &__section{
+        @include desktop{
+            display: flex;
+            flex-wrap: wrap;
+            padding:0 10rem;
+            justify-content: space-between;
+        }
+    }
+    &__box{
+        max-width: 85rem;
+        max-height: 60rem;
+        display: flex;
+        margin-bottom:4rem;
+        justify-content: space-between;
+        @include desktop{
+            flex-basis: 33%;
+        }
+    }
+    &__img-box{
+        flex-basis: 47%;
+    }
+    &__details-box{
+        flex-basis:47%;    
+        margin-left:1rem;
+        @include desktop{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+    &__title{
+        font-size: 14px;
+        line-height: 18px;
+        color: #4B4B59;  
+        margin-bottom: 0.5rem;
+        @include desktop{
+            font-size: 1.6rem;
+            line-height: 2rem;
+        }
+    }
+    &__author{
+        font-weight: 300;
+        font-size: 11px;
+        line-height: 14px;
+        color: #8C9094;
+        margin-bottom: 1rem;   
+    }
+    &__price{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        color: #4B4B59;
+        margin-bottom: 1rem;
+    }
+    &__hard{
+        font-size: 12px;
+        line-height: 15px;
+        color: #6B7177;
+        
+    }
+    &__buy{
+    display: none;
+    }
+    &__complete{
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 12px;
+        line-height: 15px;
+        color: #154681;
+        padding: 0.8rem;
+        font-weight: bold;
+        &:hover{
+            background-color:cornsilk;
+            text-decoration: none;
+        
+        }
+        @include desktop{
+            width:51%;
+            border-radius:20px;
+            font-size: 1.4rem;
+            line-height: 1.8rem;
+            padding:1rem;
+            margin-top: 7rem;    
+        }  
+    }
+    &__fav-box{
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        align-items: flex-end;
+        @include desktop{
+            
+        }
     }
 }

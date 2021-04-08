@@ -5,75 +5,62 @@
     @include desktop{
         display: flex;
     }
-}
-
-.info__box-mobile{
-    @include desktop{
-        flex-basis: 50%;
-        padding:2.4rem;
-    }
-    
-}
-
-.info__box-desktop{
-    display:none;
-    @include desktop{
-        flex-basis: 50%;
-        display:flex;
-    }
-    
-}
-
-.info__desktop-img{
-    @include desktop{
-        width: 100%;
-    }
-    
-}
-
-.info__start{
-
-}
-
-.info__heading{
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 26px;
-    color: #154681;
-    @include desktop{
-        font-size: 3.4rem;
-        line-height:2.4rem;
-    }
-    
-}
-
-.info__para{
-    font-family: Merriweather Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #6B7177;
-    margin-top:1.4rem;
-    margin-bottom:3rem;
-    @include desktop{
-        font-size: 20px;
-        line-height: 24px;
-        margin-top:2.5rem;
-        margin-bottom:6rem;
+    &__box-mobile{
+        @include desktop{
+            flex-basis: 50%;
+            padding:2.4rem;
+        }
+        
     }   
+    &__box-desktop{
+        display:none;
+        @include desktop{
+            flex-basis: 50%;
+            display:flex;
+        }
+        
+    }  
+    &__desktop-img{
+        @include desktop{
+            width: 100%;
+        }
+        
+    }  
+    &__heading{
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 26px;
+        color: #154681;
+        @include desktop{
+            font-size: 3.4rem;
+            line-height:2.4rem;
+        }
+    } 
+    &__para{
+        font-family: Merriweather Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: #6B7177;
+        margin-top:1.4rem;
+        margin-bottom:3rem;
+        @include desktop{
+            font-size: 20px;
+            line-height: 24px;
+            margin-top:2.5rem;
+            margin-bottom:6rem;
+        }   
+    }
 }
-
 
 
 .form__div{
     display: flex;
     flex-direction: column;
 }
-
-
 
 .form__box4{
     flex-direction: row;
@@ -205,7 +192,6 @@
 .google__img{
     margin-right:1rem;
 }
-
 .google__para{
     font-weight: 500;
     font-size: 1.6rem;
@@ -213,31 +199,32 @@
     color: rgba(0, 0, 0, 0.54);
 }
 
+
 .common{
     display: flex;
     @include desktop{
         margin-top:3rem;
     }
-}
-
-.common__para{
-    font-size: 14px;
-    line-height: 18px;
-    color: #8C9094;
-    margin-right:1rem;
-}
-
-.common__link{
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 21px;
-    text-decoration-line: underline;  
-    color: #145C9E;
-    @include desktop{
-        font-size:1.6rem;
-        line-height: 2.2rem;
+    &__para{
+        font-size: 14px;
+        line-height: 18px;
+        color: #8C9094;
+        margin-right:1rem;
     }
+    &__link{
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 21px;
+        text-decoration-line: underline;  
+        color: #145C9E;
+        @include desktop{
+            font-size:1.6rem;
+            line-height: 2.2rem;
+        }
+    }
+    
 }
+
 

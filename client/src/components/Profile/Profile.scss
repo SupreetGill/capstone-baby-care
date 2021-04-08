@@ -6,190 +6,243 @@
     @include desktop{
         padding:4rem 5rem;
     }
-}
-
-.profile__intro-box{
-    display: flex;
-    align-items: center;
-    @include desktop{
-       
+    &__intro-box{
+        display: flex;
+        align-items: center;
+        @include desktop{
+           
+        }
     }
-}
-
-.profile__hand-img{
-    width:35px;
-    height:35px;
-    margin-right:1rem;
-    @include desktop{
-        width:50px;
-        height:50px;
-        margin-right:2rem;
+    
+    &__hand-img{
+        width:35px;
+        height:35px;
+        margin-right:1rem;
+        @include desktop{
+            width:50px;
+            height:50px;
+            margin-right:2rem;
+        }
     }
-}
-
-.profile__top-name{
-    font-size: 2.4rem;
-    line-height: 2rem;
-    color:orange;
-    @include desktop{
-        font-size: 3.4rem;
-    line-height: 4rem;
+    
+    &__top-name{
+        font-size: 2.4rem;
+        line-height: 2rem;
+        color:orange;
+        @include desktop{
+            font-size: 3.4rem;
+        line-height: 4rem;
+        }
     }
-}
-
-.profile__user-details{
-    margin-top:4rem;
-    margin-bottom:6rem;
-    @include desktop{
-        margin-top:6rem;
-        margin-bottom:3rem;
+    
+    &__user-details{
+        margin-top:4rem;
+        margin-bottom:6rem;
+        @include desktop{
+            margin-top:6rem;
+            margin-bottom:3rem;
+        }
     }
-}
-
-.profile__attributes-box{
-    margin-bottom:3.5rem;
-    @include desktop{
-        margin-bottom:0;
+    
+    &__attributes-box{
+        margin-bottom:3.5rem;
+        @include desktop{
+            margin-bottom:0;
+        }
     }
-}
-
-.profile__attributes-box--margin{
-    @include desktop{
-        margin-bottom: 3rem;
+    
+    &__attributes-box--margin{
+        @include desktop{
+            margin-bottom: 3rem;
+        }
+     
     }
- 
-}
-
-.profile__name-title{
-    font-family:poppins;
-    font-size:1.8rem;
-    line-height: 1.8rem;
-    font-weight: bold;
-    color:#154681;
-    margin-bottom:0.8rem;
-    @include desktop{
-        margin-bottom:0.8rem;
-    }
-}
-
-.profile__name{
-    font-family:poppins;
-    font-size:1.6rem;
-    line-height: 1.8rem;
-    font-weight: 400;
-    color:#6B7177;
-    @include desktop{
+    
+    &__name-title{
+        font-family:poppins;
         font-size:1.8rem;
-        line-height: 2.2rem;  
+        line-height: 1.8rem;
+        font-weight: bold;
+        color:#154681;
+        margin-bottom:0.8rem;
+        @include desktop{
+            margin-bottom:0.8rem;
+        }
+    }
+    
+    &__name{
+        font-family:poppins;
+        font-size:1.6rem;
+        line-height: 1.8rem;
+        font-weight: 400;
+        color:#6B7177;
+        @include desktop{
+            font-size:1.8rem;
+            line-height: 2.2rem;  
+        }
     }
 }
+
+
+
+
 
 .kids{
     @include desktop{
         margin-top:8rem;      
     }
-}
-
-.kids__add-box{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    @include desktop{
-        justify-content: flex-start;
-        align-items: center;
-    }
-}
-
-.kids__num{
-    font-family:poppins;
-    font-weight:bold;
-    font-size:2rem;
-    line-height: 1.8rem;
-    color: #154681;
-    @include desktop{
-        flex:1;
-        font-size:2rem;
-        line-height: 1.8rem;    
-    }
-}
-
-.kids__add-btn-box{
-    @include desktop{
+    &__add-box{
         display: flex;
-        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        @include desktop{
+            justify-content: flex-start;
+            align-items: center;
+        }
     }
-}
-
-.kids__dd-btn{
-    background-color: #154681;
-    color:white;
-    padding:0.5rem 2rem;
-    border-radius:20px;
-    font-size: 1.5rem;
-    &:hover{
-        background-color:#154681;
+    &__num{
+        font-family:poppins;
+        font-weight:bold;
+        font-size:2rem;
+        line-height: 1.8rem;
+        color: #154681;
+        @include desktop{
+            flex:1;
+            font-size:2rem;
+            line-height: 1.8rem;    
+        }
+    } 
+    &__add-btn-box{
+        @include desktop{
+            display: flex;
+            align-items: center;
+        }
+    }
+    &__dd-btn{
+        background-color: #154681;
         color:white;
-        text-decoration: none;
+        padding:0.5rem 2rem;
+        border-radius:20px;
+        font-size: 1.5rem;
+        &:hover{
+            background-color:#154681;
+            color:white;
+            text-decoration: none;
+        }
+        @include desktop{
+            padding:0.8rem 2rem;
+            font-size: 1.6rem;
+        }
     }
-    @include desktop{
-        padding:0.8rem 2rem;
-        font-size: 1.6rem;
+    &__delet-icon{
+        width:20px;
+        height: 20px;
+        @include desktop{
+            width:18px;
+            height:18px;
+            margin-left:2rem;
+        }
+    }
+    &__single-container{
+        display: flex;
+        border:1px solid #F5F9FF;
+        border-radius:4rem;
+        margin-bottom:2.5rem;
+        justify-content: space-between;
+        background-color: #F5F9FF;
+        padding:2rem;
+        flex-wrap: wrap;
+        @include desktop{
+            display: flex;
+            flex-wrap: nowrap;
+            border:1px solid #F5F9FF;
+            border-radius:4rem;
+            margin-bottom:2.5rem;
+            justify-content: space-evenly;
+            background-color: #F5F9FF;
+            padding:2rem;
+        }
+    }  
+    &__inner{
+     width:100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-bottom: 1rem;
+        @include desktop{
+            margin-bottom: 0;
+            justify-content: flex-start;  
+        }
+    } 
+    &__img{
+       margin-right:1.5rem;
+       width:70px;
+       height: 70px;
+        @include desktop{
+            width:50px;
+            height: 50px;
+        }
+    } 
+    &__inner-diff{
+        width:50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom:2rem;
+        @include desktop{
+            width:100%;
+            margin-bottom:0;    
+        }
+    }   
+    &__feature{
+        font-family: Poppins;
+        color: #154681;
+        font-weight: bold;
+        font-size: 1.4rem;
+        line-height:1.8rem;
+        margin-bottom: 0.8rem;
+        @include desktop{
+            font-size: 1.8rem;
+            line-height:1.8rem;
+        }
+    }  
+    &__feature-value{
+        font-family: Poppins;
+        font-weight:400;
+        font-size: 1.4rem;
+        line-height:1.8rem;
+        color: #6B7177;
+        @include desktop{
+            font-size: 1.6rem;
+            line-height:2.2rem;
+        }
+    }  
+    &__edit{
+        font-weight:600;
+        font-size: 1.3rem;
+        line-height:1.8rem;
+        color: #6B7177;
+        @include desktop{
+                
+        }
+    }   
+    &__edit-icon{
+        width:28px;
+        height: 28px;
+        @include desktop{
+            width:35px;
+            height: 35px;       
+        }
+    }  
+    &__inner--special{
+        justify-content: space-evenly;
+        @include desktop{
+    
+        }
     }
 }
 
-.kids__delet-icon{
-    width:20px;
-    height: 20px;
-    @include desktop{
-        width:18px;
-        height:18px;
-        margin-left:2rem;
-    }
-}
 
-
-.kids__single-container{
-    display: flex;
-    border:1px solid #F5F9FF;
-    border-radius:4rem;
-    margin-bottom:2.5rem;
-    justify-content: space-between;
-    background-color: #F5F9FF;
-    padding:2rem;
-    flex-wrap: wrap;
-@include desktop{
-    display: flex;
-    flex-wrap: nowrap;
-    border:1px solid #F5F9FF;
-    border-radius:4rem;
-    margin-bottom:2.5rem;
-    justify-content: space-evenly;
-    background-color: #F5F9FF;
-    padding:2rem;
-}
-}
-
-.kids__inner{
- width:100%;
- display: flex;
- align-items: center;
- justify-content: center;
- margin-bottom: 1rem;
-    @include desktop{
-        margin-bottom: 0;
-        justify-content: flex-start;  
-    }
-}
-
-.kids__img{
-   margin-right:1.5rem;
-   width:70px;
-   height: 70px;
-    @include desktop{
-        width:50px;
-        height: 50px;
-    }
-}
 
 .kid__name{
     font-weight:600;
@@ -199,67 +252,4 @@
         @include desktop{ 
         font-size:2rem;
         }
-}
-.kids__inner-diff{
-    width:50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom:2rem;
-    @include desktop{
-        width:100%;
-        margin-bottom:0;    
-    }
-}
-
-.kids__feature{
-    font-family: Poppins;
-    color: #154681;
-    font-weight: bold;
-    font-size: 1.4rem;
-    line-height:1.8rem;
-    margin-bottom: 0.8rem;
-    @include desktop{
-        font-size: 1.8rem;
-        line-height:1.8rem;
-    }
-}
-
-.kids__feature-value{
-    font-family: Poppins;
-    font-weight:400;
-    font-size: 1.4rem;
-    line-height:1.8rem;
-    color: #6B7177;
-    @include desktop{
-        font-size: 1.6rem;
-        line-height:2.2rem;
-    }
-
-}
-
-.kids__edit{
-    font-weight:600;
-    font-size: 1.3rem;
-    line-height:1.8rem;
-    color: #6B7177;
-    @include desktop{
-            
-    }
-}
-
-.kids__edit-icon{
-    width:28px;
-    height: 28px;
-    @include desktop{
-        width:35px;
-        height: 35px;       
-    }
-}
-
-.kids__inner--special{
-    justify-content: space-evenly;
-    @include desktop{
-
-    }
 }

@@ -9,138 +9,128 @@
     justify-content: space-between;
     @include desktop{
     }
-}
-
-
-
-.header__dropdown-item{
-    font-size: 2rem;
-    color: #154681;
-    padding: 1rem 2rem;
-
-}
-.header__logo-img{
-    width:131px;
-}
-
-.header__desktop{
-    display: none;
-    @include desktop{
-        display: block;
-    }
-}
-
-
-.header__dropdown{
-    @include desktop{
-        display: flex;
-    }
-    
-}
-
-.header__dropdown-color{
-    @include desktop{
-        background-color: transparent ;
-        color: #154681;
-        border: none;
+    &__dropdown-item{
         font-size: 2rem;
-        padding: 0 1rem;
-        margin-left: 1rem;
-        &:focus{
-        outline: none;
-        box-shadow: none;
+        color: #154681;
+        padding: 1rem 2rem;
+    }
+    &__logo-img{
+        width:131px;
+    }
+
+    &__desktop{
+        display: none;
+        @include desktop{
+            display: block;
         }
     }
+
+    &__dropdown{
+        @include desktop{
+            display: flex;
+        }
+        
+    }
+
+    &__dropdown-color{
+        @include desktop{
+            background-color: transparent ;
+            color: #154681;
+            border: none;
+            font-size: 2rem;
+            padding: 0 1rem;
+            margin-left: 1rem;
+            &:focus{
+            outline: none;
+            box-shadow: none;
+            }
+        }   
+    }
+
+    &__link{
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 30px;
+        color: #154681;
+        @include desktop{
+            margin-left:4rem;
+            padding:0 1rem;
+            border-radius: 2rem;
+            &:hover{
+                background-color:cornsilk;
+                color:deepskyblue;
+            }
+        }   
+    }
+
+    &__create{
+        @include desktop{
+            font-family: Poppins;
+            font-style: normal;
+            font-size: 1.8rem;
+            line-height: 2.4rem;
+            color: #FFFFFF;
+            background: #154681;
+            border-radius: 43px;
+            padding: 0.3rem 0.8rem;
+        }
+    }
+
+    &__mobile{
+        display:block;
+        margin-right:2rem;
+        @include desktop{
+            display:none;
+        }
+    }
+
+    &__mobile-ul{
+        display: block;
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        top: 87px;
+        left: 0;
+        background: white;
+        text-align: center;
+        z-index:999;
+        
+    }
+
+    &__mobile-ul--noshow{
+        display: none;
+    }
+
+    &__mobile-li{
+        display: block;
+        padding:2.5rem 0;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 24px;  
+        color: #154681;
+        border-bottom:1px solid #EFEFEF;
+        &:hover{
+            background-color: floralwhite;
+            font-weight: 800;
+        }
+    }
+
+    &__padding{
+        padding: 2.5rem 0;
+        display: block;
+        border-bottom: 1px solid #EFEFEF;
+    }
     
-}
+    }
+
+
 .show {
     #dropdown-basic{
         background-color: transparent ;
         color: #154681;
     }
-}
-.header__link{
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 30px;
-    color: #154681;
-    @include desktop{
-        margin-left:4rem;
-        padding:0 1rem;
-        border-radius: 2rem;
-        &:hover{
-            background-color:cornsilk;
-            color:deepskyblue;
-
-        }
-    }
-    
-}
-
-
-.header__create{
-@include desktop{
-    font-family: Poppins;
-    font-style: normal;
-    font-size: 1.8rem;
-    line-height: 2.4rem;
-    color: #FFFFFF;
-    background: #154681;
-    border-radius: 43px;
-    padding: 0.3rem 0.8rem;
-}
-}
-
-.header__mobile{
-    display:block;
-    margin-right:2rem;
-    @include desktop{
-        display:none;
-    }
-}
-
-
-
-
-.header__mobile-ul{
-    display: block;
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    top: 87px;
-    left: 0;
-    background: white;
-    text-align: center;
-    z-index:999;
-    
-}
-
-.header__mobile-ul--noshow{
-    display: none;
-}
-
-.header__mobile-li{
-    display: block;
-    padding:2.5rem 0;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 24px;  
-    color: #154681;
-    border-bottom:1px solid #EFEFEF;
-    &:hover{
-        background-color: floralwhite;
-        font-weight: 800;
-    }
-}
-
-
-
-.header__padding{
-    padding: 2.5rem 0;
-    display: block;
-    border-bottom: 1px solid #EFEFEF;
 }

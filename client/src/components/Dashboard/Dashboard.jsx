@@ -9,7 +9,6 @@ import diapers from '../../assets/images/diaper.svg';
 import feeds from '../../assets/images/feeds.svg';
 import words from '../../assets/images/words.svg';
 import {Link,Redirect} from 'react-router-dom';
-import Header from '../Header/Header';
 import axios from 'axios';
 
 class Dashboard extends Component {
@@ -22,9 +21,7 @@ class Dashboard extends Component {
 
 
     componentDidMount(){
-        // set today date
         let date = new Date();
-        // let formatedDate = date.toLocaleDateString().split('/').reverse().join('-');
         let formatedDate = date.toISOString().slice(0,10);
         this.setState({
             todayDate: formatedDate
@@ -66,22 +63,18 @@ class Dashboard extends Component {
                 childActivityArr : res.data.data
             }) 
         })       
-
     }
-
 
 
     render() {
         const { childArr , userName, formatedDate, childActivityArr } = this.state;
 
         if(!this.props.loggedIn || !childArr || !childActivityArr){
-            // return <Redirect to='/login' />
             return <p>loading dashboard</p>
         }
-        return (<>
-           {/* <Header/> */}
-           
-           <main className = 'activities'>
+        return (
+    
+           <main className = 'activity'>
                 <div className = 'profile__intro-box' >
                     <img className = 'profile__hand-img' src={hand} alt=""/>
                     <h1 className = 'profile__top-name' >Hey {userName} !</h1>
@@ -118,17 +111,10 @@ class Dashboard extends Component {
                         </div>
 
                         <div className ='activity__chart'>
-
                                 <div className = 'activity__type'>
                                     <img className = 'activity__img' src={feeds} alt=""/>
                                     <p className = 'activity__title'>Feeds Count</p>
-
                                     <div className = 'acitvity__holder'>
-                                        {/* <div className = 'activity__count-box'> */}
-                                            {/* <img className = 'activity__minus' src={minus} alt=""/> */}
-                                            {/* <p className = 'activity__number'>1</p> */}
-                                            {/* <img className = 'activity__plus' src= {plus} alt=""/> */}
-                                        {/* </div> */}
                                         <div className = 'activity__counter-box'>
                                             <p className = 'activity__how-many' >{childActivityArr[i] ? childActivityArr[i].feeds : 0}</p>
                                         </div>
@@ -139,11 +125,6 @@ class Dashboard extends Component {
                                     <p className = 'activity__title'>Diapers</p>
 
                                     <div className = 'acitvity__holder'>
-                                        {/* <div className = 'activity__count-box'>
-                                            <img className = 'activity__minus' src={minus} alt=""/>
-                                            <p className = 'activity__number'>3</p>
-                                            <img className = 'activity__plus' src= {plus} alt=""/>
-                                        </div> */}
                                         <div className = 'activity__counter-box'>
                                             <p className = 'activity__how-many' >{childActivityArr[i] ? childActivityArr[i].diaper : 0}</p>
                                         </div>
@@ -160,13 +141,7 @@ class Dashboard extends Component {
                                 <div className = 'activity__type'>
                                     <img className = 'activity__img' src={tum} alt=""/>
                                     <p className = 'activity__title'>Tummy Time</p>
-
                                     <div className = 'acitvity__holder'>
-                                        {/* <div className = 'activity__count-box'>
-                                            <img className = 'activity__minus' src={minus} alt=""/>
-                                            <p className = 'activity__number'>1</p>
-                                            <img className = 'activity__plus' src= {plus} alt=""/>
-                                        </div> */}
                                         <div className = 'activity__counter-box'>
                                             <p className = 'activity__how-many' >{childActivityArr[i] ? childActivityArr[i].tummy : 0}</p>
                                         </div>
@@ -176,11 +151,9 @@ class Dashboard extends Component {
                         </div>
                     </div>
                 })}
-               
-
-              
+                   
             </main>
-            </>
+            
         );
     }
 }

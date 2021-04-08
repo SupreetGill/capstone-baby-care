@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import baby from '../../assets/images/baby_care.jpg';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import './BookDetails.scss';
-import Header from '../Header/Header';
 import axios from 'axios';
 
 class BookDetails extends Component {
@@ -14,7 +11,6 @@ class BookDetails extends Component {
 
      componentDidMount(){
          const bookid = this.props.match.params.id;
-        //  console.log(bookid , 'from bookdetails page')
         axios.get(`http://localhost:5000/books/${bookid}`)
         .then((res)=>{
            console.log(res.data.data)
@@ -34,7 +30,7 @@ class BookDetails extends Component {
         return (
         
             <section className = "detail">
-                <div className = "details__img-box">
+                <div className = "detail__img-box">
                     <img className = "detail__img"src={bookDetails.image} alt=""/>
                 </div>
                 <div className = 'detail__box' >
@@ -44,7 +40,7 @@ class BookDetails extends Component {
                 <p className = "detail__hard" >Hardcover Ships Worldwide</p>
                 <p className = "detail__about" >About the book</p>
                 <p className = "detail__about-more" >{bookDetails.description}</p>
-                <Link  className = 'details__back' exact to = '/books'>Go Back</Link>
+                <Link  className = 'detail__back' exact to = '/books'>Go Back</Link>
                 <div className = "detail__link-box">
                 <a className = "detail__link" target = '_blank' href= {bookDetails.buy_link}>Buy Now</a>
                 </div>          

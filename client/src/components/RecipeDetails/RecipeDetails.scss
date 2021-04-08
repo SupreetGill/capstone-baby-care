@@ -6,192 +6,176 @@
     display: flex;
     padding:2rem 5rem;
   }
-}
-
-.recipe__img-box{
-  flex-basis:100%;
-  @include desktop{
-      flex-basis:30%;
-      height:24vw;
-    }
-}
-
-.recipe__img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  &__img-box{
+    flex-basis:100%;
     @include desktop{
-      width:100%;
-      height:100%;
-      object-fit:contain;
+        flex-basis:30%;
+        height:24vw;
+      }
+  }
+  
+  &__img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+      @include desktop{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+      }
+  }
+  
+  &__basic-info{
+    @include desktop{
+      flex-basis:40%;
     }
-}
-
-.recipe__basic-info{
-  @include desktop{
-    flex-basis:40%;
   }
-}
-
-.recipe__title{
-  @include desktop{
-    font-weight: 300;
-    font-size:1.6rem ;
-    line-height: 1.8rem;
-    color:#4B4B59
-  } 
-}
-
-.recipe__about{
- @include desktop{
-    font-size:1.4rem ;
-    line-height: 1.8rem;
-    color:#8C9094;
-    margin:1rem 0;
-    padding-bottom:0.8rem;
-    border-bottom:1px solid #E4E4E4;
- }
-}
-
-.recipe__description{
-  @include desktop{
-    font-weight: 300;
-    font-size:1.4rem ;
-    line-height: 2rem;
-    color:#6B7177;
+  
+  &__title{
+    @include desktop{
+      font-weight: 300;
+      font-size:1.6rem ;
+      line-height: 1.8rem;
+      color:#4B4B59
+    } 
   }
-}
-
-.recipe__how{
-  @include desktop{
-    font-weight: 400;
-    font-size:1.4rem ;
-    line-height: 1.8rem;
-    color:#154681;
-    border-bottom:1px solid #E4E4E4;
-    margin:1.5rem 0;
-    padding-bottom:0.5rem;
+  
+  &__about{
+   @include desktop{
+      font-size:1.4rem ;
+      line-height: 1.8rem;
+      color:#8C9094;
+      margin:1rem 0;
+      padding-bottom:0.8rem;
+      border-bottom:1px solid #E4E4E4;
+   }
   }
-}
-
-.recipe__instructions{
-  @include desktop{
-    font-weight: 300;
-    font-size:1.4rem ;
-    line-height: 2rem;
-    color:#6B7177;
+  
+  &__description{
+    @include desktop{
+      font-weight: 300;
+      font-size:1.4rem ;
+      line-height: 2rem;
+      color:#6B7177;
+    }
   }
-}
-
-
-.recipe__comments-link{
+  
+  &__how{
     @include desktop{
       font-weight: 400;
-      font-size:1.2rem ;
+      font-size:1.4rem ;
       line-height: 1.8rem;
       color:#154681;
-      text-decoration: underline;
+      border-bottom:1px solid #E4E4E4;
+      margin:1.5rem 0;
+      padding-bottom:0.5rem;
     }
-}
-
-.recipe__comments-appear{
-  @include desktop{
-    margin-bottom:1rem;
   }
-}
-
-
-.recipe__comments-conditional{
-  @include desktop{
-    display: flex;
-    align-items: center;
-    padding:1rem 0;
-  }
-}
-
-
-
-.recipe__img-cnd{
-
-  @include desktop{
-
-  }
-}
-
-
-.recipe__name-person{
-  @include desktop{
-    font-size:1.3rem ;
-    line-height: 1.6rem;
-    color:#262626;
-    margin-bottom:0.5rem;
-  }
-}
-
-.recipe__person-comment{
-  @include desktop{
-    font-weight: 300;
-    font-size:1.3rem ;
-    line-height: 1.6rem;
-    color:#6B7177;
-  }
-}
-
-.recipe__comment-form{
-  @include desktop{
-    display: flex;
-    margin:1rem 0;
-  }
-}
-
-
-
-.recipe__form-input{
-  @include desktop{
-    flex:1;
-    border-radius: 2rem;
-    outline:none;
-    border:1px solid #E4E4E4;
-    color: #6B7177;
-    padding:0.5rem;
-  }
-}
-
-.recipe__btn-div{
-  @include desktop{
-    display: flex;
-    margin-left:0.5rem;
-  }
-}
-
-.recipe__form-btn{
-  background: none;
-  .recipe__form-btn--ui{
+  
+  &__instructions{
     @include desktop{
-      font-size: 2rem;
-      line-height: 1.8rem;
+      font-weight: 300;
+      font-size:1.4rem ;
+      line-height: 2rem;
+      color:#6B7177;
     }
   }
-}
-
-
-
-.recipe__ingredients-box{
-
-  @include desktop{
-    flex-basis: 30%;
+  
+  &__comments-link{
+      @include desktop{
+        font-weight: 400;
+        font-size:1.2rem ;
+        line-height: 1.8rem;
+        color:#154681;
+        text-decoration: underline;
+      }
   }
-
+  
+  &__comments-appear{
+    @include desktop{
+      margin-bottom:1rem;
+    }
+  }
+  
+  &__comments-conditional{
+    @include desktop{
+      display: flex;
+      align-items: center;
+      padding:1rem 0;
+    }
+  }
+  
+  &__name-person{
+    @include desktop{
+      font-size:1.3rem ;
+      line-height: 1.6rem;
+      color:#262626;
+      margin-bottom:0.5rem;
+    }
+  }
+  
+  &__person-comment{
+    @include desktop{
+      font-weight: 300;
+      font-size:1.3rem ;
+      line-height: 1.6rem;
+      color:#6B7177;
+    }
+  }
+  
+  &__comment-form{
+    @include desktop{
+      display: flex;
+      margin:1rem 0;
+    }
+  }
+  
+  &__form-input{
+    @include desktop{
+      flex:1;
+      border-radius: 2rem;
+      outline:none;
+      border:1px solid #E4E4E4;
+      color: #6B7177;
+      padding:0.5rem;
+    }
+  }
+  
+  &__btn-div{
+    @include desktop{
+      display: flex;
+      margin-left:0.5rem;
+    }
+  }
+  
+  &__form-btn{
+    background: none;
+    .recipe__form-btn--ui{
+      @include desktop{
+        font-size: 2rem;
+        line-height: 1.8rem;
+      }
+    }
+  }
+  
+  &__ingredients-box{
+    @include desktop{
+      flex-basis: 30%;
+    }
+  }
+  
+  &__ingredients{
+   @include desktop{
+     font-size:1.6rem;
+     line-height:2rem;
+     color:#154681;
+     font-weight: bold;
+   }
+  }
+   
 }
 
-.recipe__ingredients{
- @include desktop{
-   font-size:1.6rem;
-   line-height:2rem;
-   color:#154681;
-   font-weight: bold;
- }
-}
+
 
 .recipes__ul{
   @include desktop{
@@ -202,9 +186,6 @@
     padding: 1rem;
   }
 }
-
-
-
 .popularity__main-box{
   @include desktop{
     display: flex;
@@ -213,7 +194,6 @@
   }
 
 }
-
 .popularity__inner-box{
   @include desktop{
     display: flex;
@@ -224,8 +204,6 @@
   }
 
 }
-
-
 .display-none{
   display: none;
 }

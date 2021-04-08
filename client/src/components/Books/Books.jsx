@@ -60,7 +60,6 @@ class Books extends Component {
             </div>
         </section>
            
-           
         );    
     }
 }
