@@ -26,7 +26,6 @@ class Dashboard extends Component {
         this.setState({
             todayDate: formatedDate
         })
-        console.log(formatedDate);
 
         const jwt =  sessionStorage.getItem('jwt');
         if(jwt){
@@ -45,31 +44,63 @@ class Dashboard extends Component {
             this.setState({
                 userName : res.data.data.full_name
             }) 
+
+            axios.get('http://localhost:5000/users/allchild', {headers: header})
+            .then(res =>{
+                // console.log(res.data.data);
+                this.setState({
+                    childArr : res.data.data
+                }) 
+            })   
+
+            axios.get(`http://localhost:5000/users/babyactivitylist/${this.state.todayDate}`, {headers: header})
+            .then(res =>{
+                // console.log(res.data.data);
+                this.setState({
+                    childActivityArr : res.data.data
+                }) 
+            })   
+            
+        })
+     
+    }
+
+    handleChange=(e)=>{
+        e.preventDefault();
+        this.setState({
+            [e.target.name]:e.target.value
         })
 
-        // fetch all child list
-        axios.get('http://localhost:5000/users/allchild', {headers: header})
-        .then(res =>{
-            // console.log(res.data.data);
-            this.setState({
-                childArr : res.data.data
-            }) 
-        })     
+    }
 
-        axios.get('http://localhost:5000/users/babyactivitylist', {headers: header})
-        .then(res =>{
-            // console.log(res.data.data);
-            this.setState({
-                childActivityArr : res.data.data
-            }) 
-        })       
+    handleSubmit = (e) =>{
+        e.preventDefault();
+        const header = {
+            Authorization: sessionStorage.getItem('jwt')
+        }
+
+        axios.get('http://localhost:5000/users/allchild', {headers: header})
+            .then(res =>{
+                // console.log(res.data.data);
+                this.setState({
+                    childArr : res.data.data
+                }) 
+            })   
+
+        axios.get(`http://localhost:5000/users/babyactivitylist/${this.state.todayDate}`, {headers: header})
+            .then(res =>{
+                // console.log(res.data.data);
+                this.setState({
+                    childActivityArr : res.data.data
+                }) 
+            })   
     }
 
 
     render() {
-        const { childArr , userName, formatedDate, childActivityArr } = this.state;
+        const { childArr , userName, todayDate, childActivityArr } = this.state;
 
-        if(!this.props.loggedIn || !childArr || !childActivityArr){
+        if(!this.props.loggedIn || !childArr || !childActivityArr || !todayDate){
             return <p>loading dashboard</p>
         }
         return (
@@ -79,8 +110,9 @@ class Dashboard extends Component {
                     <img className = 'profile__hand-img' src={hand} alt=""/>
                     <h1 className = 'profile__top-name' >Hey {userName} !</h1>
                 </div>
-                <form>
-                    <input type="date" defaultValue= {formatedDate}/>
+                <form onSubmit = {this.handleSubmit} >
+                    <input onChange={this.handleChange} type="date" name="todayDate" value= {todayDate}/>
+                    <button type = "submit" >as per date</button>
                 </form>
 
                 {childArr.map((c,i)=> {

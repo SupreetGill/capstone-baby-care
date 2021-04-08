@@ -449,15 +449,17 @@ router.post('/babyactivity/:babyId', checkAuth, (req,res)=>{
 })
 
 // fetch baby dashboard 
-router.get('/babyactivitylist', checkAuth, (req,res)=>{
+router.get('/babyactivitylist/:currentdate', checkAuth, (req,res)=>{
     const encodedUserId = res.userData.data.id;
     //decoding the id
     const userIdDecoded = Buffer.from(encodedUserId, "base64").toString("ascii");
     //the actual token sent by user, coming from the front end,
     const userToken = res.userData.token; //
 
-    let date = new Date();
-    let currentDate = date.toISOString().slice(0,10);
+    // let date = new Date();
+    // let currentDate = date.toISOString().slice(0,10);
+    let currentDate = req.params.currentdate;
+    console.log(currentDate);
     db.query(
         "select secret_key from users where user_id = ?",
         [userIdDecoded],
@@ -469,7 +471,13 @@ router.get('/babyactivitylist', checkAuth, (req,res)=>{
             }
             else if(result[0].secret_key === userToken){
                 db.query(
-                    "select bd.baby_id, bd.baby_name, bd.age, bd.gender, bd.height, bd.weight, ba.feeds, ba.diaper, ba.tummy, ba.words from baby_details as bd left join baby_activity as ba on bd.baby_id = ba.baby_id where bd.user_id = ? and ba.createdat = ?",
+                    `select 
+                    bd.baby_id, bd.baby_name, bd.age, bd.gender, bd.height, bd.weight, 
+                    ba.feeds, ba.diaper, ba.tummy, ba.words 
+                    from baby_details as bd 
+                    left join baby_activity as ba 
+                    on bd.baby_id = ba.baby_id 
+                    where bd.user_id = ? and ba.createdat = ?`,
                     [userIdDecoded, currentDate],
                     (error, result) =>{
                         if(error){
