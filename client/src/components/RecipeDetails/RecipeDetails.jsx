@@ -213,9 +213,9 @@ likesUpdate=()=>{
                         <img className = 'recipe__svg' src={girl} alt=""/>
                         <input className = 'recipe__form-input' onChange={this.handleChange} type="text" name = 'comment' value = {this.state.comment} placeholder='add a comment'/>
                         <div className = 'recipe__btn-div'>
-                            <button type ='submit' className = {isLoggedIn ? 'recipe__form-btn' : 'display-none' }>
+                            {/* <button type ='submit' className = {isLoggedIn ? 'recipe__form-btn' : 'display-none' }>
                                 <DeleteIcon onClick = {this.deleteComment} className = 'recipe__form-btn--ui' />
-                            </button>
+                            </button> */}
                             <button type = 'submit' className = {isLoggedIn ? 'recipe__form-btn' : 'display-none' }>
                                 <AddCircleIcon  onClick = {this.addComment} className = 'recipe__form-btn--ui display-none' />
                             </button>   

@@ -27,19 +27,26 @@ class CreateAccount extends Component {
 
     handleSubmit = (e)=>{
         e.preventDefault();
-    const body = {
-        fullName :this.state.name,
-        email: this.state.email,
-        password:this.state.password
+        const body = {
+            fullName :this.state.name,
+            email: this.state.email,
+            password:this.state.password
+        }
+        axios.post('http://localhost:5000/users/create',body)
+            .then(res=>{
+                alert('Registered Successfully!!')
+                this.setState({
+                    isRegistered : true
+                })
+            })
     }
-    axios.post('http://localhost:5000/users/create',body)
-    .then(res=>{
-       alert('Registered Successfully!!')
-       this.setState({
-           isRegistered : true
-       })
-      
-    })
+
+    googleCreate = (e) => {
+        e.preventDefault();
+        axios.get('http://localhost:5000/auth/google');
+        // .then(res=>{
+            
+        // })  
     }
 
     render() {
@@ -47,6 +54,7 @@ class CreateAccount extends Component {
         if(isRegistered){
             return <Redirect to = '/login' />
         }
+
         return (
              
             <section className = 'info' >
@@ -78,10 +86,10 @@ class CreateAccount extends Component {
                         </div>
                         <p className = 'form__or' >OR</p>
                         <div className = 'google__box' >
-                            <Link className = 'google__link' to = '/'>
+                            <div className = 'google__link' onClick={this.googleCreate}>
                                 <img className = 'google__img' src={google} alt=""/>
-                                <p className = 'google__para' >Continue with Google</p>
-                            </Link>
+                                <p  className = 'google__para' >Continue with Google</p>
+                            </div>
                         </div>
                         
                     </form>

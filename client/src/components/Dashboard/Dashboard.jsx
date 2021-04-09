@@ -110,9 +110,9 @@ class Dashboard extends Component {
                     <img className = 'profile__hand-img' src={hand} alt=""/>
                     <h1 className = 'profile__top-name' >Hey {userName} !</h1>
                 </div>
-                <form onSubmit = {this.handleSubmit} >
-                    <input onChange={this.handleChange} type="date" name="todayDate" value= {todayDate}/>
-                    <button type = "submit" >as per date</button>
+                <form  className = 'activity__form' onSubmit = {this.handleSubmit} >
+                    <input className = 'activity__input' onChange={this.handleChange} type="date" name="todayDate" value= {todayDate}/>
+                    <button className = 'activity__button' type = "submit" > Pick date </button>
                 </form>
 
                 {childArr.map((c,i)=> {
@@ -139,7 +139,7 @@ class Dashboard extends Component {
                                     <p className = 'kids__feature'  >Gender</p>
                                     <p className = 'kids__feature-value' >{c.gender}</p>
                                 </div>   
-                                <Link to ={`/dailyactivity/${c.baby_id}`} ><button>Add Activities</button></Link> 
+                                <Link className = 'kids__dash-link'  to ={`/dailyactivity/${c.baby_id}`} ><button className = 'kids__add-stuff'>Add Activities</button></Link> 
                         </div>
 
                         <div className ='activity__chart'>

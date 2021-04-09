@@ -9,7 +9,7 @@ import axios from 'axios';
 class DailyActivity extends Component {
 
     state = {
-        name :'',
+        // name :'',
         feeds:'',
         diapers:'',
         wordsSpoken:'',
@@ -93,10 +93,10 @@ class DailyActivity extends Component {
                             <label className = 'form__label' htmlFor="date">Pick Date</label>
                             <input className = 'form__input' onChange = {this.handleChange} type="date" placeholder='' required name = 'date' value = {date} id = 'date' />  
                         </div>
-                        <div className = 'form__box1  form__div' >
+                        {/* <div className = 'form__box1  form__div' >
                             <label className = 'form__label' htmlFor="name">Full Name</label>
                             <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = '' name = 'name' value = {name} id ='name' />
-                        </div>
+                        </div> */}
                         <div className = 'form__box2 form__div ' >
                             <label className = 'form__label' htmlFor="feeds">Feeds given</label>
                             <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = '' name = 'feeds' value = {feeds} id ='feeds' />

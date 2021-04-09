@@ -176,6 +176,11 @@
 }
 
 
+.recipe__comment-body-box{
+  flex:1;
+}
+
+
 
 .recipes__ul{
   @include desktop{
@@ -206,4 +211,9 @@
 }
 .display-none{
   display: none;
+}
+
+.recipe__form-btn--ui{
+  // color:royalblue
+  color:#154681;
 }

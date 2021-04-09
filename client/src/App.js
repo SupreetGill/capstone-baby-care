@@ -14,6 +14,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import AddForm from './components/AddForm/AddForm';
 import EditChildDetails from './components/EditChildDetails/EditChildDetails' ;
 import DailyActivity from './components/DailyActivity/DailyActivity';
+import Google from './components/Google/Google';
 
 
 class App extends Component {
@@ -55,6 +56,7 @@ logOutUser = ()=>{
             <Route exact path = '/addchild' render = {(props)=> <AddForm{...props} loggedIn = {isLoggedIn} handleLogin = {this.loginInUser}/>} />
             <Route exact path = '/EditChildDetails/:childid' render = {(props)=> <EditChildDetails loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
             <Route exact path = '/dailyactivity/:baby_id' render = {(props)=> <DailyActivity loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />    
+            <Route exact path = '/googleauth/:token' render = {(props)=> <Google {...props} />} />    
           </Switch>
         </BrowserRouter>
       </div>

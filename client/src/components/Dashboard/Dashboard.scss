@@ -130,3 +130,47 @@
 .single__kid--margin{
     margin-top:6rem;
 }
+
+.kids__add-stuff{
+    background-color: #154681;
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    
+    @include desktop{
+
+    }
+}
+
+.kids__dash-link{
+    margin: auto;
+    @include desktop{
+       
+    }
+}
+
+.activity__form{
+    margin-top :2rem;
+    font-size: 1.3rem;
+    display: flex;
+    cursor: pointer;
+    @include desktop{
+        font-size: 1.6rem;
+    }
+}
+
+.activity__input{
+
+}
+
+.activity__button{
+margin-left:2rem;
+background: none;
+cursor: pointer;
+// background: #154681;
+background: orange;
+color:white;
+padding:0.8rem 1rem;
+border-radius: 20px;
+}
