@@ -21,6 +21,7 @@ class Profile extends Component {
         const header = {
             Authorization: sessionStorage.getItem('jwt')
         }
+        console.log('profile page');
 
         axios.get('http://localhost:5000/users/userDetails', {headers: header})
         .then(res =>{

@@ -93,9 +93,16 @@ axios.delete(`http://localhost:5000/recipes/deleteComment/${id}`,{headers: heade
     axios.get(`http://localhost:5000/recipes/allcomment/${recipe_id}`, {headers: header})
     .then(res=>{
         console.log(res.data.data);
-
         this.setState({
             allComments: res.data.data
+        })
+
+        const selectedRecipe =this.props.match.params.id;
+        axios.get(`http://localhost:5000/recipes/recipeDetails/${selectedRecipe}`)
+        .then(res=>{
+            this.setState({
+                singleRecipe:res.data.data,
+            })
         })
     })
   
@@ -119,6 +126,13 @@ axios.post(`http://localhost:5000/recipes/addComment/${recipe_id}`,commentBody, 
     console.log(res);
     this.setState({
         comment:''
+    })
+    const selectedRecipe =this.props.match.params.id;
+    axios.get(`http://localhost:5000/recipes/recipeDetails/${selectedRecipe}`)
+    .then(res=>{
+        this.setState({
+            singleRecipe:res.data.data,
+        })
     })
     axios.get(`http://localhost:5000/recipes/allcomment/${recipe_id}`, {headers: header})
     .then(res=>{

@@ -43,6 +43,7 @@ app.get('/',(req, res)=>{
 })
 
 //google code
+// google login hit
 app.get('/auth/google',
   passport.authenticate('google', { scope:
       [ 'email', 'profile' ] }
@@ -103,15 +104,11 @@ app.get('/auth/google/success', (req, res) => {
                           })
                       }
                       // return the token
-                      // res.writeHead(301,{
-                      //   Location: 'http://localhost:3000/googleauth/'+jwtToken
-                      // })
-                      // res.end();
-                      // window.location = "http://localhost:3000/googleauth"+jwtToken ;
-                      return res.status(200).json({
-                          jwtToken: jwtToken,
-                          message:"user logged in"
-                      })
+                      return res.redirect('http://localhost:3000/googleauth/'+jwtToken);
+                    //   return res.status(200).json({
+                    //       jwtToken: jwtToken,
+                    //       message:"user logged in"
+                    //   })
                   }
                 )
             }
@@ -140,15 +137,11 @@ app.get('/auth/google/success', (req, res) => {
                   })
               }
               // return the token
-              // res.writeHead(301,{
-              //   Location: 'http://localhost:3000/googleauth/'+jwtToken
-              // })
-              // res.end();
-              // window.location = "http://localhost:3000/googleauth"+jwtToken ;
-              return res.status(200).json({
-                  jwtToken: jwtToken,
-                  message:"user logged in"
-              })
+              return res.redirect('http://localhost:3000/googleauth/'+jwtToken);
+            //   return res.status(200).json({
+            //       jwtToken: jwtToken,
+            //       message:"user logged in"
+            //   })
           }
         )
       }

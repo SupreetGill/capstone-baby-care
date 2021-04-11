@@ -39,14 +39,15 @@ class CreateAccount extends Component {
                     isRegistered : true
                 })
             })
+            .catch(err => {
+                // console.log(err.response);
+                alert(err.response.data.message);
+            })
     }
 
     googleCreate = (e) => {
         e.preventDefault();
         axios.get('http://localhost:5000/auth/google');
-        // .then(res=>{
-            
-        // })  
     }
 
     render() {

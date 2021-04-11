@@ -11,8 +11,9 @@ router.get('/recipe_category',(req,res)=>{
         ['1'],
         (error, result)=>{
             if(error){
-             return res.status(500).json({
-                    error:error
+                return res.status(500).json({
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             return res.status(200).json({
@@ -29,8 +30,9 @@ router.get('/',(req,res)=>{
         [],
         (error, result)=>{
             if(error){
-             return res.status(500).json({
-                    error:error
+                return res.status(500).json({
+                    error:error,
+                    message: "Database error!!"
                 })
             }
             result.map(recipe=>{
@@ -56,7 +58,8 @@ router.get('/recipeByCategory/:categoryid', (req,res)=>{
      (error, result)=>{
         if(error){
          return res.status(500).json({
-                error:error
+                error:error,
+                message: "Database error!!"
             })
         }
         result.map(recipe=>{
@@ -82,7 +85,8 @@ router.get('/recipeDetails/:recipeid', (req,res)=>{
      (error, result)=>{
         if(error){
          return res.status(500).json({
-                error:error
+                error:error,
+                message: "Database error!!"
             })
         }
         result[0].image = `http://localhost:5000/images/recipeImages/${result[0].image}`;
@@ -109,19 +113,19 @@ router.post('/addComment/:recipeid',checkAuth,(req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
                 db.query(
                     "insert into recipe_actions (action_type,user_id,recipe_id,comment) values (?,?,?,?)",
                     ['comment',userId,recipeid,comment],
-
-                  
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -152,7 +156,8 @@ router.get('/allcomment/:recipeid',(req,res)=>{
         (error, result) =>{
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             return res.status(200).json({
@@ -178,7 +183,8 @@ router.delete('/deleteComment/:commentid', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -190,7 +196,8 @@ router.delete('/deleteComment/:commentid', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -225,7 +232,8 @@ router.post('/like/:recipeid',checkAuth,(req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -236,7 +244,8 @@ router.post('/like/:recipeid',checkAuth,(req,res)=>{
                     (error, result) => {
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         // if count found then delete
@@ -247,7 +256,8 @@ router.post('/like/:recipeid',checkAuth,(req,res)=>{
                                 (error, result) =>{
                                     if(error){
                                         return res.status(500).json({
-                                            error: error
+                                            error: error,
+                                            message: "Database error!!"
                                         })
                                     }
                                     return res.status(200).json({
@@ -265,7 +275,8 @@ router.post('/like/:recipeid',checkAuth,(req,res)=>{
                                 (error, result) =>{
                                     if(error){
                                         return res.status(500).json({
-                                            error: error
+                                            error: error,
+                                            message: "Database error!!"
                                         })
                                     }
                                     return res.status(200).json({
@@ -287,15 +298,6 @@ router.post('/like/:recipeid',checkAuth,(req,res)=>{
     )
 
 })
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;

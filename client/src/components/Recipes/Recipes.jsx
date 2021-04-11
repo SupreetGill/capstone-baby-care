@@ -29,7 +29,7 @@ class Recipes extends Component {
         axios.get('http://localhost:5000/recipes')
         .then((res)=>{
            const recipesArr = res.data.data;
-           console.log(recipesArr)
+        //    console.log(recipesArr)
 
            this.setState({
                recipesArr: res.data.data
@@ -47,15 +47,28 @@ class Recipes extends Component {
 
 fetchId=(e)=>{
     e.preventDefault();
+
     const selectedCat = e.target.id;
     axios.get(`http://localhost:5000/recipes/recipeByCategory/${selectedCat}`)
     .then(res=>{
-        console.log(res.data.data)
+        // console.log(res.data.data)
         this.setState({
             recipesArr: res.data.data
         })
     })
-    }
+}
+
+fetchIdMobile=(e)=>{
+    e.preventDefault();
+    const index = e.target.value;
+
+    axios.get(`http://localhost:5000/recipes/recipeByCategory/${index}`)
+    .then(res=>{
+        this.setState({
+            recipesArr: res.data.data
+        })
+    })
+}
    
 
     render() {
@@ -77,9 +90,9 @@ fetchId=(e)=>{
                     </ul>
                     <Form className= "recipes__mobile-select">
                         <Form.Group controlId="exampleForm.SelectCustom">
-                            <Form.Control as="select" custom>
+                            <Form.Control as="select" custom onChange = {this.fetchIdMobile}>
                             {recipeCategoriesArr.map(category=>{
-                                return  <option  onClick = {this.fetchId} id = {category.id} className = 'recipes__li'>{category.name}</option>
+                                return  <option id = {category.id} value={category.id} className = 'recipes__li'>{category.name}</option>
                             })}
                             </Form.Control>
                         </Form.Group>

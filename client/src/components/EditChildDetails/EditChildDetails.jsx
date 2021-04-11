@@ -14,7 +14,6 @@ class EditChildDetails extends Component {
         weight:'',
         height:'',
         gender:'',
-        selectedChild:'',
         isEdited: false
     }
 
@@ -28,7 +27,11 @@ class EditChildDetails extends Component {
       .then(res=>{
           console.log(res.data.data);
           this.setState({
-          selectedChild : res.data.data
+              name: res.data.data.baby_name,
+              age: res.data.data.age,
+              weight: res.data.data.weight,
+              height: res.data.data.height,
+              gender: res.data.data.gender
           })
       
       });
@@ -69,7 +72,7 @@ class EditChildDetails extends Component {
 
 
     render() {
-        const {name, age, weight, height, gender,selectedChild, isEdited} = this.state;
+        const {name, age, weight, height, gender, isEdited} = this.state;
 
         if(isEdited){
             return <Redirect to='/profile' />
@@ -86,23 +89,23 @@ class EditChildDetails extends Component {
                     <form onSubmit= {this.handleSubmit} className = 'form' action="">
                         <div className = 'form__box1  form__div' >
                             <label className = 'form__label' htmlFor="name">Full Name</label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = '' name = 'name' defaultValue = {selectedChild.baby_name} id ='name' />
+                            <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = '' name = 'name' defaultValue = {name} id ='name' />
                         </div>
                         <div className = 'form__box2 form__div ' >
                             <label className = 'form__label' htmlFor="age">Age </label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = '' name = 'age' defaultValue = {selectedChild.age} id ='age' />
+                            <input className = 'form__input' onChange = {this.handleChange} type="text" required placeholder = '' name = 'age' defaultValue = {age} id ='age' />
                         </div>
                         <div className = 'form__box3 form__div '>
                             <label className = 'form__label' htmlFor="weight">weight</label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="text" placeholder='' required name = 'weight' defaultValue = {selectedChild.weight} id = 'weight' />  
+                            <input className = 'form__input' onChange = {this.handleChange} type="text" placeholder='' required name = 'weight' defaultValue = {weight} id = 'weight' />  
                         </div>
                         <div className = 'form__box3 form__div '>
                             <label className = 'form__label' htmlFor="height">Height</label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="text" placeholder='' required name = 'height' defaultValue = {selectedChild.height} id = 'height' />  
+                            <input className = 'form__input' onChange = {this.handleChange} type="text" placeholder='' required name = 'height' defaultValue = {height} id = 'height' />  
                         </div>
                         <div className = 'form__box3 form__div '>
                             <label className = 'form__label' htmlFor="gender">Gender</label>
-                            <input className = 'form__input' onChange = {this.handleChange} type="text" placeholder='' required name = 'gender' defaultValue = {selectedChild.gender} id = 'gender' />  
+                            <input className = 'form__input' onChange = {this.handleChange} type="text" placeholder='' required name = 'gender' defaultValue = {gender} id = 'gender' />  
                         </div>
                         <button  className  = 'form__baby-btn' type = 'submit'>Submit</button>   
                     </form>

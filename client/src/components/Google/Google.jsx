@@ -6,28 +6,28 @@ import Header from '../Header/Header';
 class Google extends Component {
 
     state = {
-        isAuthenticate : false
+        isAuth : false
    }
 
     componentDidMount(){
-        console.log(this.state.isAuthenticate);
+        // console.log(this.state.isAuth);
         const jwt = this.props.match.params.token;
         sessionStorage.setItem('jwt',jwt);
         this.setState({
-            isAuthenticate: true
+            isAuth: true
         })
-        console.log(jwt);
-        console.log(this.state.isAuthenticate);
+        // console.log(sessionStorage.getItem('jwt'));
+        this.props.handleLogin();
+        // console.log(this.state.isAuth);
     }
 
     render() {
-        const { isAuthenticate } = this.state;
-        if(!isAuthenticate){
-           return <Redirect to = '/profile' />
+        const { isAuth } = this.state;
+        if(!isAuth){
+            return <Redirect to = '/login' />
+        }  else {
+            return <Redirect to = '/profile' />
         }
-        return (
-            <></>
-        );
     }
 }
 

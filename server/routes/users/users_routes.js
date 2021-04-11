@@ -11,20 +11,44 @@ router.post('/create',(req, res)=>{
     const password = req.body.password;
     const encrytPassword = md5(password);
 
-   db.query(
-       "insert into users (full_name, email, password, status) values (?,?,?,?)",
-       [fullName,email,encrytPassword,'1'],
-       (error, result)=>{
-          if(error){
-              return res.status(500).json({
-                  error:error
-              })
-          }
-          return res.status(200).json({
-              message: "registered successfully"
-          })
-       }
-   )
+    //check for the existing email/user
+    db.query(
+        "select user_id from users where email = ?",
+        [email],
+        (error, result) => {
+            if(error){
+                return res.status(500).json({
+                    error:error,
+                    message: "Database error!!"
+                })
+            }
+            // if email not exist then create 
+            else if (!result[0]){
+                db.query(
+                    "insert into users (full_name, email, password, status) values (?,?,?,?)",
+                    [fullName,email,encrytPassword,'1'],
+                    (error, result)=>{
+                       if(error){
+                           return res.status(500).json({
+                               error:error,
+                               message: "Database error!!"
+                           })
+                       }
+                       return res.status(200).json({
+                           message: "registered successfully"
+                       })
+                    }
+                )
+            } 
+            // if email already exist then send message
+            else {
+                return res.status(400).json({
+                    message: "Email is already exist."
+                })
+            }
+        }
+    )
+
 
 })
 
@@ -38,7 +62,8 @@ router.post('/login',(req, res)=>{
         (error,result)=>{
             if(error){
                 return res.status(500).json({
-                    error:error
+                    error:error,
+                    message: "Database error!!"
                 })
             }
             else if (!result[0]){
@@ -67,7 +92,8 @@ router.post('/login',(req, res)=>{
                     (error, result) => {
                         if(error){
                             return res.status(500).json({
-                                error:error
+                                error:error,
+                                message: "Database error!!"
                             })
                         }
                         // return the token
@@ -101,7 +127,8 @@ router.get('/logout', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -112,7 +139,8 @@ router.get('/logout', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -143,7 +171,8 @@ router.get('/userDetails', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -154,7 +183,8 @@ router.get('/userDetails', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -188,7 +218,8 @@ router.post('/addchild', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -199,7 +230,8 @@ router.post('/addchild', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -234,7 +266,8 @@ router.post('/editchild/:babyId', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -246,7 +279,8 @@ router.post('/editchild/:babyId', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -281,7 +315,8 @@ router.delete('/deletechild/:babyId', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -293,7 +328,8 @@ router.delete('/deletechild/:babyId', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -326,7 +362,8 @@ router.get('/allchild', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -337,7 +374,8 @@ router.get('/allchild', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -372,7 +410,8 @@ router.get('/singlechild/:babyid', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -383,7 +422,8 @@ router.get('/singlechild/:babyid', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -419,7 +459,8 @@ router.post('/babyactivity/:babyId', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -430,7 +471,8 @@ router.post('/babyactivity/:babyId', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -466,7 +508,8 @@ router.get('/babyactivitylist/:currentdate', checkAuth, (req,res)=>{
         (error, result) => {
             if(error){
                 return res.status(500).json({
-                    error: error
+                    error: error,
+                    message: "Database error!!"
                 })
             }
             else if(result[0].secret_key === userToken){
@@ -482,7 +525,8 @@ router.get('/babyactivitylist/:currentdate', checkAuth, (req,res)=>{
                     (error, result) =>{
                         if(error){
                             return res.status(500).json({
-                                error: error
+                                error: error,
+                                message: "Database error!!"
                             })
                         }
                         return res.status(200).json({
@@ -501,28 +545,6 @@ router.get('/babyactivitylist/:currentdate', checkAuth, (req,res)=>{
         }
     )
 })
-
-
-
-// const generateKey  = async() => {
-//     //generate key
-//     generateKeyPair('ec', {
-//         namedCurve: 'secp256k1',
-//         publicKeyEncoding: {
-//             type: 'spki',
-//             format: 'der'
-//         }
-//     },
-//     (err, publicKey) => {
-//         if(err){
-//             console.log("Key genrate error");
-//             return 0;
-//         } else {
-//             console.log("Key : ", publicKey.toString('hex'));
-//             return publicKey.toString('hex');
-//         }
-//     })
-//  }
 
 
 

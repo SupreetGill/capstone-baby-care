@@ -56,7 +56,7 @@ logOutUser = ()=>{
             <Route exact path = '/addchild' render = {(props)=> <AddForm{...props} loggedIn = {isLoggedIn} handleLogin = {this.loginInUser}/>} />
             <Route exact path = '/EditChildDetails/:childid' render = {(props)=> <EditChildDetails loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />
             <Route exact path = '/dailyactivity/:baby_id' render = {(props)=> <DailyActivity loggedIn = {isLoggedIn} handleLogin = {this.loginInUser} {...props} />} />    
-            <Route exact path = '/googleauth/:token' render = {(props)=> <Google {...props} />} />    
+            <Route exact path = '/googleauth/:token' render = {(props)=> <Google handleLogin = {this.loginInUser} {...props} />} />    
           </Switch>
         </BrowserRouter>
       </div>
