@@ -183,6 +183,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    cursor: pointer;
     @include desktop{
         font-size: 1.8rem;
         line-height: 2.6rem;
@@ -225,6 +226,19 @@
         }
     }
     
+}
+.Google-sign{
+    // border:1px solid green;
+    display: flex;
+    justify-content: center;
+    
+    padding:1rem;
+    @include desktop{
+        justify-content: flex-start;
+    }
+    &__btn{
+        font-size: 2rem;
+    }
 }
 
 

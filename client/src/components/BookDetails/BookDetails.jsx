@@ -36,7 +36,7 @@ class BookDetails extends Component {
                 <div className = 'detail__box' >
                 <p className = "detail__title" >{bookDetails.title}</p>
                 <p className = "detail__auhtor" >{bookDetails.author}</p>  
-                <p className = "detail__price" >{`$ ${bookDetails.price}`}</p>
+                <p className = "detail__price" >{`${bookDetails.price}`}</p>
                 <p className = "detail__hard" >Hardcover Ships Worldwide</p>
                 <p className = "detail__about" >About the book</p>
                 <p className = "detail__about-more" >{bookDetails.description}</p>

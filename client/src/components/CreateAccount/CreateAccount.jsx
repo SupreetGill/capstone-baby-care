@@ -8,6 +8,7 @@ import bottle from '../../assets/images/bottle.jpeg'
 import './CreateAccount.scss';
 import axios from 'axios';
 import Header from '../Header/Header';
+import GoogleLogin from 'react-google-login';
 
 class CreateAccount extends Component {
 
@@ -45,15 +46,39 @@ class CreateAccount extends Component {
             })
     }
 
-    googleCreate = (e) => {
-        e.preventDefault();
-        axios.get('http://localhost:5000/auth/google');
+    // googleCreate = (e) => {
+    //     e.preventDefault();
+    //     axios.get('http://localhost:5000/auth/google');
+    // }
+
+    responseGoogle = (res) => {
+        
+        // console.log(res.profileObj);
+        const body = {
+            userEmail: res.profileObj.email,
+            fullName: res.profileObj.name
+        }
+        axios.post('http://localhost:5000/auth/google/success', body)
+            .then(res=>{
+                const jwt = res.data.jwtToken;
+                sessionStorage.setItem('jwt',jwt);
+                this.props.handleLogin();
+            })
+            .catch(err => {
+                alert(err.response.data.message);
+            })
+    }
+    failGoogle = (res)=>{
+        alert("Goodle authentication failed")
     }
 
     render() {
         const {name, email, password, isRegistered} = this.state;
         if(isRegistered){
             return <Redirect to = '/login' />
+        }
+        if(this.props.loggedIn){
+            return <Redirect to = '/profile' />
         }
 
         return (
@@ -86,12 +111,21 @@ class CreateAccount extends Component {
                             <button className = 'form__btn' type = 'submit'>Create an Account</button>
                         </div>
                         <p className = 'form__or' >OR</p>
-                        <div className = 'google__box' >
+                        {/* <div className = 'google__box' >
                             <div className = 'google__link' onClick={this.googleCreate}>
                                 <img className = 'google__img' src={google} alt=""/>
                                 <p  className = 'google__para' >Continue with Google</p>
                             </div>
+                        </div> */}
+                        <div className = 'Google-sign' >
+                        <GoogleLogin className = 'google-sign__btn'
+                            clientId= "880320092469-k96sia3b1j3rm1156lo7cq3oams18u1s.apps.googleusercontent.com"
+                            buttonText= "Login with Google"
+                            onSuccess= {this.responseGoogle}
+                            onFailure= {this.failGoogle}
+                        />
                         </div>
+                        
                         
                     </form>
                     <div className = 'common'>

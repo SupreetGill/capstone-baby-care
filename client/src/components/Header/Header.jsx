@@ -84,8 +84,10 @@ class Header extends Component {
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu className= ''>
-                                        <Dropdown.Item className = 'header__dropdown-item' href="/dashboard">Dashboard</Dropdown.Item>
+                                             <Dropdown.Item className = 'header__dropdown-item' href="/profile">Profile</Dropdown.Item>
+                                             <Dropdown.Item className = 'header__dropdown-item' href="/dashboard">Dashboard</Dropdown.Item>
                                             <Dropdown.Item className = 'header__dropdown-item' href="#/action-2">Change Password</Dropdown.Item>
+                                            
                                         
                                         </Dropdown.Menu>
                                     </Dropdown>

@@ -12,8 +12,8 @@ const jwt = require('jsonwebtoken');
 require('./passport-setup');
 
 //google auth settings
-const session = require('express-session');
-const passport = require('passport');
+// const session = require('express-session');
+// const passport = require('passport');
 
 //ejs: To render HTML pages for login and profile
 // app.set('view engine', 'ejs');
@@ -28,38 +28,39 @@ app.use('/users', usersRouters);
 
 
 //google auth
-app.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: 'SECRET' 
-  }));
+// app.use(session({
+//     resave: false,
+//     saveUninitialized: true,
+//     secret: 'SECRET' 
+//   }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 
 app.get('/',(req, res)=>{
     res.send('checking my first route')
 })
 
+// http://localhost:5000/auth/google/callback
 //google code
 // google login hit
-app.get('/auth/google',
-  passport.authenticate('google', { scope:
-      [ 'email', 'profile' ] }
-));
+// app.get('/auth/google',
+//   passport.authenticate('google', { scope:
+//       [ 'email', 'profile' ] }
+// ));
 
+// app.get( '/auth/google/callback',
+//     passport.authenticate( 'google', {
+//         successRedirect: '/auth/google/success',
+//         failureRedirect: '/auth/google/failure'
+// }));
 
-app.get( '/auth/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/auth/google/success',
-        failureRedirect: '/auth/google/failure'
-}));
-
-app.get('/auth/google/success', (req, res) => {
+app.post('/auth/google/success', (req, res) => {
   // email and full name is extracted from google profile
-  const userEmail = req.user.email;
-  const fullName = req.user.displayName;
+  // const userEmail = req.user.email;
+  // const fullName = req.user.displayName;
+  const { userEmail, fullName } = req.body;
 
   db.query(
     "select user_id from users where email = ?",
@@ -67,7 +68,8 @@ app.get('/auth/google/success', (req, res) => {
     (error, result) => {
       if(error){
           return res.status(500).json({
-              error:error
+              error:error,
+              message:"Database error!!"
           })
       }
       // if not exist then create
@@ -78,7 +80,8 @@ app.get('/auth/google/success', (req, res) => {
             (error, result)=>{
               if(error){
                   return res.status(500).json({
-                      error:error
+                      error:error,
+                      message:"Database error!!"
                   })
               }
                 const jwtToken = jwt.sign(
@@ -96,19 +99,20 @@ app.get('/auth/google/success', (req, res) => {
                 //secret key -is diff for each user even though db key is samwe -> tthat is part of jwt token
                 db.query(
                   "update users set secret_key = ? where user_id = ?",
-                  [jwtToken, result[0].user_id],
+                  [jwtToken, result.insertId],
                   (error, result) => {
                       if(error){
                           return res.status(500).json({
-                              error:error
+                              error:error,
+                              message:"Database error!!"
                           })
                       }
                       // return the token
-                      return res.redirect('http://localhost:3000/googleauth/'+jwtToken);
-                    //   return res.status(200).json({
-                    //       jwtToken: jwtToken,
-                    //       message:"user logged in"
-                    //   })
+                      // return res.redirect('http://localhost:3000/googleauth/'+jwtToken);
+                      return res.status(200).json({
+                          jwtToken: jwtToken,
+                          message:"user logged in"
+                      })
                   }
                 )
             }
@@ -133,15 +137,16 @@ app.get('/auth/google/success', (req, res) => {
           (error, result) => {
               if(error){
                   return res.status(500).json({
-                      error:error
+                      error:error,
+                      message:"Database error!!"
                   })
               }
               // return the token
-              return res.redirect('http://localhost:3000/googleauth/'+jwtToken);
-            //   return res.status(200).json({
-            //       jwtToken: jwtToken,
-            //       message:"user logged in"
-            //   })
+              // return res.redirect('http://localhost:3000/googleauth/'+jwtToken);
+              return res.status(200).json({
+                  jwtToken: jwtToken,
+                  message:"user logged in"
+              })
           }
         )
       }
@@ -153,11 +158,11 @@ app.get('/auth/google/success', (req, res) => {
   // })
 });
 
-app.get('/auth/google/failure', (req, res) => {
-  return res.status(500).json({
-    message: "Google auth failed"
-  })
-});
+// app.get('/auth/google/failure', (req, res) => {
+//   return res.status(500).json({
+//     message: "Google auth failed"
+//   })
+// });
 
 
 

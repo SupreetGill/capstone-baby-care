@@ -4,6 +4,7 @@ import love from '../../assets/images/love.jpeg';
 import './Login.scss';
 import axios from 'axios';
 import Header from '../Header/Header';
+import GoogleLogin from 'react-google-login';
 
 class Login extends Component {
 
@@ -42,6 +43,20 @@ handleSubmit = (e)=>{
        })
    }
 
+   responseGoogle = (res) => {
+        // console.log(res.profileObj);
+        const body = {
+            userEmail: res.profileObj.email,
+            fullName: res.profileObj.name
+        }
+        axios.post('http://localhost:5000/auth/google/success', body)
+            .then(res=>{
+                const jwt = res.data.jwtToken;
+                sessionStorage.setItem('jwt',jwt);
+                this.props.handleLogin();
+            })
+    }
+
     render() {
         const { email, password} = this.state;
         if(this.props.loggedIn){
@@ -64,11 +79,17 @@ handleSubmit = (e)=>{
                             <label className = 'form__label' htmlFor="password">Password</label>
                             <input className = 'form__input' onChange = {this.handleChange} type="password" placeholder='' required name = 'password' value = {password} id = 'password' />  
                         </div>
-                
-                    <div className = 'form__box5 form__div ' >
+                        <div className = 'form__box5 form__div ' >
                             <button className = 'form__btn' type = 'submit'>Login</button>
                         </div>
-                        
+                       <div className = 'Google-sign'>
+                       <GoogleLogin 
+                            clientId= "880320092469-k96sia3b1j3rm1156lo7cq3oams18u1s.apps.googleusercontent.com"
+                            buttonText= "Login with Google"
+                            onSuccess= {this.responseGoogle}
+                            onFailure= {this.responseGoogle}
+                        />
+                       </div>       
                     </form>
                     <div className = 'common'>
                         <p className = 'common__para'> Don't have an account ?</p>
