@@ -9,7 +9,7 @@ const usersRouters = require('./routes/users/users_routes');
 const db = require('./database/db');
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
-require('./passport-setup');
+// require('./passport-setup');
 
 //google auth settings
 // const session = require('express-session');
