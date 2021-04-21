@@ -100,8 +100,9 @@ class Header extends Component {
                                 <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/books' ><li>Books</li></NavLink>
                                 <NavLink onClick = {this.handleToggle} className = 'header__mobile-li' exact to = '/recipes'><li>Recipes</li></NavLink>
                                 <NavLink onClick= {this.logout} className = 'header__login header__padding header__link' exact to = '/'><li>Logout</li></NavLink>
-                                <NavLink className = 'header__login header__padding header__link' exact to = '/dashboard'><li>DashBoard</li></NavLink>
-                                <NavLink className = 'header__login header__padding header__link' exact to = '/profile'><li>Change Password</li></NavLink>
+                                <NavLink onClick = {this.handleToggle} className = 'header__login header__padding header__link' exact to = '/dashboard'><li>DashBoard</li></NavLink>
+                                <NavLink onClick = {this.handleToggle} className = 'header__login header__padding header__link' exact to = '/profile'><li>Profile</li></NavLink>
+                                {/* <NavLink className = 'header__login header__padding header__link' exact to = '/profile'><li>Change Password</li></NavLink> */}
                         
                                     
                             </ul>

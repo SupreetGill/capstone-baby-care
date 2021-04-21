@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import carrot from '../../assets/images/recipes/carrot.jpeg';
 import girl from '../../assets/images/girl.svg'
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -111,29 +112,32 @@ axios.delete(`http://localhost:5000/recipes/deleteComment/${id}`,{headers: heade
 
 
 addComment=(e)=>{
- const  recipe_id = this.props.match.params.id;
- const comment = this.state.comment;
- const commentBody = {
-     comment : comment
- }
- const header = {
-    Authorization: sessionStorage.getItem('jwt')
-}
- e.preventDefault();
-console.log(recipe_id);
-axios.post(`http://localhost:5000/recipes/addComment/${recipe_id}`,commentBody, {headers: header})
-.then(res=>{
-    console.log(res);
-    this.setState({
-        comment:''
-    })
-    const selectedRecipe =this.props.match.params.id;
-    axios.get(`http://localhost:5000/recipes/recipeDetails/${selectedRecipe}`)
+    const  recipe_id = this.props.match.params.id;
+    const comment = this.state.comment;
+    const commentBody = {
+        comment : comment
+    }
+    const header = {
+        Authorization: sessionStorage.getItem('jwt')
+    }
+    e.preventDefault();
+    if(!this.state.comment){
+        return false;
+    }
+    // console.log(recipe_id);
+    axios.post(`http://localhost:5000/recipes/addComment/${recipe_id}`,commentBody, {headers: header})
     .then(res=>{
+        console.log(res);
         this.setState({
-            singleRecipe:res.data.data,
+            comment:''
         })
-    })
+        const selectedRecipe =this.props.match.params.id;
+        axios.get(`http://localhost:5000/recipes/recipeDetails/${selectedRecipe}`)
+        .then(res=>{
+            this.setState({
+                singleRecipe:res.data.data,
+            })
+        })
     axios.get(`http://localhost:5000/recipes/allcomment/${recipe_id}`, {headers: header})
     .then(res=>{
         this.setState({
@@ -234,7 +238,7 @@ likesUpdate=()=>{
                                 <AddCircleIcon  onClick = {this.addComment} className = 'recipe__form-btn--ui display-none' />
                             </button>   
                         </div>
-                        
+                       
                     </form>
                       
                 </div>
@@ -248,6 +252,7 @@ likesUpdate=()=>{
                                   
                     </ul>
                 </div>
+                
             </section>
         );
     }
